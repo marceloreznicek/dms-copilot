@@ -1,0 +1,10 @@
+<div class="sidebar">
+  <a class="new-chat-btn" href="/form">+ New Campaign</a>
+  <div class="chat-history">
+      <% campaignList.forEach(camp => { %>
+          <div class="chat-item">
+              <a href="/results/<%= camp.campaign_id %>"><%= camp.campaign_name %></a>
+          </div>
+      <% }); %>
+  </div>
+</div>

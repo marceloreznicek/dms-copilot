@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('partials/header', {
+        logoText: logoText,
+        userAvatar: userAvatar,
+        username: username
+    }) %>
+    
+    <div class="main-layout">
+        <%- include('partials/sidebar', {
+            chatHistory: chatHistory
+        }) %>
+        
+        <div class="main-content">
+            <div class="chat-container">
+                <% messages.forEach(message => { %>
+                    <div class="message <%= message.type %>">
+                        <div class="avatar"><%= message.avatar %></div>
+                        <div class="message-content">
+                            <%= message.content %>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+            <div class="input-container">
+                <textarea class="input-box" placeholder="Send a message..."></textarea>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

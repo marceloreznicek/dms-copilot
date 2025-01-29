@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/results.css">
+    <link rel="icon" type="image/x-icon" href="/images/torch.ico">
+</head>
+<body>
+    <%- include('partials/header', {
+        logoText: logoText,
+        userAvatar: userAvatar,
+        username: username
+    }) %>
+    
+    <div class="main-layout">
+        <%- include('partials/sidebar', {
+            campaignList: campaignList
+        }) %>
+        
+        <div class="main-content">
+            <div class="results-container">
+                <div class="results-content">
+                    <p class="campaign-content"><%- campaignContent %></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+.results-container {
+  flex: 1;
+  padding: 2rem;
+  background-color: #343541;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.results-content {
+  text-align: left;
+  /* font-size: 14px; */
+}
+
+.results-content h1 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.campaign-container {
+  color: #ffffff;
+  padding: 2rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.campaign-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #565869;
+}
+
+.campaign-pitch {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #40414f;
+  border-radius: 4px;
+  line-height: 1.6;
+}
+
+.campaign-section {
+  margin: 2rem 0;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #a8b3cf;
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #565869;
+}
+
+.subsection {
+  margin: 1.5rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid #565869;
+}
+
+.subsection-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #a8b3cf;
+  text-transform: capitalize;
+  margin-bottom: 0.75rem;
+}
+
+.campaign-item {
+  margin: 0.75rem 0;
+  padding-left: 1rem;
+}
+
+.item-key {
+  font-weight: bold;
+  color: #a8b3cf;
+  text-transform: capitalize;
+  margin-right: 0.5rem;
+}
+
+.item-value {
+  color: #ffffff;
+}
+
+.campaign-error {
+  color: #ff6b6b;
+  padding: 1rem;
+  margin: 1rem;
+  border: 1px solid #ff6b6b;
+  border-radius: 4px;
+  background-color: rgba(255, 107, 107, 0.1);
+}
