@@ -1,4 +1,8 @@
-require("dotenv").config();
+// Load dotenv in development
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const { OpenAI } = require("openai");
 const prompt = require("./openaiPrompts/PromptCampaignCreation");
 const apiKey = process.env.OPENAI_API_KEY;
