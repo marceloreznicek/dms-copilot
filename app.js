@@ -5,6 +5,10 @@ const app = express()
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// Make the static middleware more specific for js files
+app.use('/js', express.static(path.join(__dirname, 'public/js')))
+app.use('/css', express.static(path.join(__dirname, 'public/css')))
+app.use('/images', express.static(path.join(__dirname, 'public/images')))
 app.use(express.static(path.join(__dirname, 'public')))
 
 const router = require("./routes/routes")

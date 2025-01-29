@@ -4,10 +4,6 @@
           <div class="logo">My Dungeon Co-pilot</div>
           <img src="/images/torch.png" alt="torch" width="50px">
       </div>
-      <nav class="navbar">
-          <a href="/campaigns" class="nav-link">My Campaigns</a>
-          <a href="/campaigns/new" class="nav-link">New Campaign</a>
-      </nav>
   </div>
   <div class="header-right">
       <button class="settings-btn">Settings</button>
@@ -15,5 +11,15 @@
           <img src="<%= userAvatar %>" alt="User Profile" class="profile-pic">
           <span class="username"><%= username %></span>
       </div>
+  </div>
+  <button class="hamburger-menu" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+  </button>
+  <div class="mobile-dropdown">
+      <a href="/campaigns/new" class="mobile-dropdown-item">New Campaign</a>
+      <a href="/campaigns" class="mobile-dropdown-item">My Campaigns</a>
+      <a href="/profile" class="mobile-dropdown-item">Profile</a>
   </div>
 </div>

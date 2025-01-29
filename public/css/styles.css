@@ -64,6 +64,10 @@ body {
   background-color: #343541;
 }
 
+.formTitle {
+  margin-bottom: 10px;
+}
+
 .main-content {
   flex: 1;
   background-color: #343541;

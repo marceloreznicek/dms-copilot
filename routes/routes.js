@@ -9,4 +9,6 @@ router.get("/form", controller.formGet);
 router.get("/form-publish", controller.formPublish);
 router.get("/results/:resultid", controller.resultsGet);
 
+router.get("/campaigns", controller.allCampaignsGet);
+
 module.exports = router;

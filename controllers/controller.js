@@ -2,19 +2,19 @@ const controllerForm = require("./controllerForm");
 const controllerInput = require("./controllerInput");
 const controllerOutput = require("./controllerOutput");
 const controllerOpenAI = require("./controllerOpenAI");
-const controllerSidebar = require("./controllerSidebar");
+const controllerCampaignList = require("./controllerCampaignList");
 
 const formatCampaignText = require("./htmlTextFormater");
 
 const db = require("../db/queries");
 
 async function formGet(req, res) {
-  res.render("campaign-form", {
-    pageTitle: "New D&D Campaign Form",
+  res.render("campaignForm", {
+    pageTitle: "Dungeon Co-Pilot - New Campaign",
     logoText: "AI Chat",
     userAvatar: "/images/avatar-placeholder.png",
     username: "John Doe",
-    campaignList: await controllerSidebar.getCampaignList(),
+    campaignList: await controllerCampaignList.getCampaignList(),
   });
 }
 
@@ -36,51 +36,34 @@ async function formPublish(req, res) {
   res.redirect("results/" + campaignid);
 }
 
-function indexGet(req, res) {
-  res.render("index", {
-    pageTitle: "AI Chat Application",
-    logoText: "AI Chat",
-    userAvatar: "/images/avatar-placeholder.png",
-    username: "John Doe",
-    campaignList: [
-      { title: "Previous chat 1" },
-      { title: "Previous chat 2" },
-      { title: "Previous chat 3" },
-    ],
-    messages: [
-      {
-        type: "user",
-        avatar: "U",
-        content: "Hello! How can you help me today?",
-      },
-      {
-        type: "assistant",
-        avatar: "A",
-        content:
-          "Hi! I'm an AI assistant. I can help you with various tasks like writing, analysis, coding, and answering questions. What would you like to work on?",
-      },
-    ],
-  });
-}
-
 async function resultsGet(req, res) {
   const resultID = req.params.resultid;
   const results = await db.getResults(resultID);
   const outputText = formatCampaignText(results.rows[0].output)
   
   res.render("result", {
-    pageTitle: "Results for campaign " + resultID,
-    logoText: "AI Chat",
+    pageTitle: "Dungeon Co-Pilot - Results ",
     userAvatar: "/images/avatar-placeholder.png",
-    username: "John Doe",
-    campaignList: await controllerSidebar.getCampaignList(),
+    username: "User",
+    campaignList: await controllerCampaignList.getCampaignList(),
     campaignContent: outputText,
   });
 }
 
+async function allCampaignsGet(req, res) {
+  const campaignList = await controllerCampaignList.getCampaignList()
+
+  res.render("campaignFolder", {
+    pageTitle: "Dungeon Co-Pilot - All Campaigns",
+    userAvatar: "/images/avatar-placeholder.png",
+    username: "User",
+    campaignList: campaignList,
+  });
+}
+
 module.exports = {
-  indexGet,
   formGet,
   formPublish,
   resultsGet,
+  allCampaignsGet
 };

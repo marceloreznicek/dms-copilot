@@ -42,7 +42,7 @@ async function getResults(id) {
 
 async function getCampaignList() {
   const query = `
-  SELECT campaign_id, campaign_name FROM campaign_outputs ORDER BY created_at DESC LIMIT 20`
+  SELECT campaign_id, campaign_name, created_at, FLOOR(RANDOM() * 11) as likes, false as isLiked FROM campaign_outputs ORDER BY created_at DESC LIMIT 20`
   const results = await pool.query(query)
   return results
 }

@@ -1,0 +1,102 @@
+.campaigns-grid {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.campaign-card {
+  background-color: #40414f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.campaign-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.campaign-info {
+  flex: 1;
+}
+
+.campaign-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.campaign-description {
+  color: #a8b3cf;
+  font-size: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.campaign-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  color: #8e8ea0;
+  font-size: 0.9rem;
+}
+
+.like-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: 1rem;
+}
+
+.like-button {
+  background: none;
+  border: none;
+  color: #8e8ea0;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.like-button:hover {
+  color: #ff4b4b;
+}
+
+.like-button.liked {
+  color: #ff4b4b;
+}
+
+.like-count {
+  color: #8e8ea0;
+  font-size: 0.9rem;
+}
+
+@media screen and (max-width: 768px) {
+  .campaigns-grid {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .campaign-card {
+    padding: 1rem;
+  }
+
+  .campaign-title {
+    font-size: 1.1rem;
+  }
+}
+

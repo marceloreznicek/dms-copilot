@@ -13,24 +13,22 @@
 
     <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
 
-    <script defer src="./js/loadingContainer.js"></script>
+    <script defer src="/js/loadingContainer.js"></script>
+    <script defer src="/js/header.js"></script>
+
   </head>
   <body>
-    <%- include('partials/header', { logoText: logoText, userAvatar: userAvatar,
-    username: username }) %>
+    <%- include('partials/header', { userAvatar: userAvatar, username: username
+    }) %>
 
     <div class="main-layout">
       <%- include('partials/loadingContainer') %>
-      <!-- Make sure there is the necessary function in the button -->
-
       <%- include('partials/sidebar', { campaignList: campaignList }) %>
-      <button id="sidebarToggle" class="mobile-menu-button">
-        <span class="hamburger-icon"></span>
-      </button>
+
 
       <div class="main-content">
         <div class="form-container">
-          <h1 id="form-name">Campaign Generator</h1>
+          <h1 class="formTitle">Campaign Generator</h1>
           <form class="campaign-form" action="/form-publish" method="get">
             <!-- World Building Questions -->
             <section class="form-section">
