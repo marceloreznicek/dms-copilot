@@ -3,16 +3,14 @@ const pool = require("./pool");
 async function insertFormData(payload) {
   // Example query using node-postgres
   const query = `
-        INSERT INTO campaign_requests (user_id, form_response, open_ai_output, final_output)
-        VALUES ($1, $2, $3, $4)
+        INSERT INTO campaign_requests (user_id, form_response)
+        VALUES ($1, $2)
         RETURNING id;
     `;
 
   const values = [
     payload.user_id,
-    payload.form_response,
-    payload.open_ai_output,
-    payload.final_output,
+    payload.form_response
   ];
 
   const result = await pool.query(query, values);
