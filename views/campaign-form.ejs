@@ -1,132 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= pageTitle %></title>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/form.css">
-    <link rel="icon" type="image/x-icon" href="/images/torch.ico">
-</head>
-<body>
-    <%- include('partials/header', {
-        logoText: logoText,
-        userAvatar: userAvatar,
-        username: username
-    }) %>
-    
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/form.css" />
+    <link rel="stylesheet" href="/css/loadingContainer.css" />
+    <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
+    <script defer src="./js/loadingContainer.js"></script>
+  </head>
+  <body>
+    <%- include('partials/header', { logoText: logoText, userAvatar: userAvatar,
+    username: username }) %>
+
     <div class="main-layout">
-        <%- include('partials/sidebar', {
-            campaignList: campaignList
-        }) %>
-        
-        <div class="main-content">
-            <div class="form-container">
-                <h1>D&D Campaign Questionnaire</h1>
-                <form class="campaign-form" action="/form-publish" method="get">
-                    <!-- World Building Questions -->
-                    <section class="form-section">
-                        <h2>World & Setting</h2>
-                        
-                        <div class="form-group">
-                            <label for="campaign-length">How long should the campaign run?</label>
-                            <select id="campaign-length" name="campaign-length" required>
-                                <option value="1">1 session</option>
-                                <option value="2">2 sessions</option>
-                                <option value="3">3 sessions</option>
-                                <option value="4">4 sessions</option>
-                                <option value="5">5 sessions</option>
-                            </select>
-                        </div>
+      <%- include('partials/loadingContainer') %>
+      <!-- Make sure there is the necessary function in the button -->
 
-                        <div class="form-group">
-                            <label for="setting-type">What type of setting interests you?</label>
-                            <input type="text" id="setting-type" name="setting-type" placeholder="e.g., Dark fantasy, High medieval, City-based..." required>
-                        </div>
+      <%- include('partials/sidebar', { campaignList: campaignList }) %>
 
-                        <div class="form-group">
-                            <label>Which races should be prominently featured? (Select all that apply)</label>
-                            <div class="checkbox-group">
-                                <label><input type="checkbox" name="races" value="humans"> Humans</label>
-                                <label><input type="checkbox" name="races" value="elves"> Elves</label>
-                                <label><input type="checkbox" name="races" value="dwarves"> Dwarves</label>
-                                <label><input type="checkbox" name="races" value="halflings"> Halflings</label>
-                                <label><input type="checkbox" name="races" value="gnomes"> Gnomes</label>
-                                <label><input type="checkbox" name="races" value="orcs"> Orcs</label>
-                            </div>
-                        </div>
+      <div class="main-content">
+        <div class="form-container">
+          <h1 id="form-name">Campaign Generator</h1>
+          <form class="campaign-form" action="/form-publish" method="get">
+            <!-- World Building Questions -->
+            <section class="form-section">
+              <h2>World & Setting</h2>
 
-                        <div class="form-group">
-                            <label>Magic level in the world:</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="magic-level" value="low"> Low Magic</label>
-                                <label><input type="radio" name="magic-level" value="medium"> Medium Magic</label>
-                                <label><input type="radio" name="magic-level" value="high"> High Magic</label>
-                            </div>
-                        </div>
+              <div class="form-group">
+                <label for="campaign-length"
+                  >How long should the campaign run?</label
+                >
+                <select id="campaign-length" name="campaign-length" required>
+                  <option value="1">1 session</option>
+                  <option value="2">2 sessions</option>
+                  <option value="3">3 sessions</option>
+                  <option value="4">4 sessions</option>
+                  <option value="5">5 sessions</option>
+                </select>
+              </div>
 
-                        <div class="form-group">
-                            <label for="tech-level">Technology/Innovation Level (1-10):</label>
-                            <input type="range" id="tech-level" name="tech-level" min="1" max="10" value="5">
-                        </div>
-                    </section>
+              <div class="form-group">
+                <label for="setting-type"
+                  >What type of setting interests you?</label
+                >
+                <input
+                  type="text"
+                  id="setting-type"
+                  name="setting-type"
+                  placeholder="e.g., Dark fantasy, High medieval, City-based..."
+                  required
+                />
+              </div>
 
-                    <!-- Plot Questions -->
-                    <section class="form-section">
-                        <h2>Plot Elements</h2>
+              <div class="form-group">
+                <label
+                  >Which races should be prominently featured? (Select all that
+                  apply)</label
+                >
+                <div class="checkbox-group">
+                  <label
+                    ><input type="checkbox" name="races" value="humans" />
+                    Humans</label
+                  >
+                  <label
+                    ><input type="checkbox" name="races" value="elves" />
+                    Elves</label
+                  >
+                  <label
+                    ><input type="checkbox" name="races" value="dwarves" />
+                    Dwarves</label
+                  >
+                  <label
+                    ><input type="checkbox" name="races" value="halflings" />
+                    Halflings</label
+                  >
+                  <label
+                    ><input type="checkbox" name="races" value="gnomes" />
+                    Gnomes</label
+                  >
+                  <label
+                    ><input type="checkbox" name="races" value="orcs" />
+                    Orcs</label
+                  >
+                </div>
+              </div>
 
-                        <div class="form-group">
-                            <label for="main-conflict">What's the central conflict type?</label>
-                            <select id="main-conflict" name="main-conflict" required>
-                                <option value="person-vs-person">Person vs Person</option>
-                                <option value="person-vs-nature">Person vs Nature</option>
-                                <option value="person-vs-society">Person vs Society</option>
-                                <option value="person-vs-supernatural">Person vs Supernatural</option>
-                                <option value="person-vs-self">Person vs Self</option>
-                            </select>
-                        </div>
+              <div class="form-group">
+                <label>Magic level in the world:</label>
+                <div class="radio-group">
+                  <label
+                    ><input type="radio" name="magic-level" value="low" /> Low
+                    Magic</label
+                  >
+                  <label
+                    ><input type="radio" name="magic-level" value="medium" />
+                    Medium Magic</label
+                  >
+                  <label
+                    ><input type="radio" name="magic-level" value="high" /> High
+                    Magic</label
+                  >
+                </div>
+              </div>
 
-                        <div class="form-group">
-                            <label for="plot-structure">Preferred plot structure:</label>
-                            <select id="plot-structure" name="plot-structure" required>
-                                <option value="linear">Linear Adventure</option>
-                                <option value="branching">Branching Paths</option>
-                                <option value="sandbox">Sandbox Style</option>
-                                <option value="mystery">Mystery/Investigation</option>
-                            </select>
-                        </div>
+              <div class="form-group">
+                <label for="tech-level"
+                  >Technology/Innovation Level (1-10):</label
+                >
+                <input
+                  type="range"
+                  id="tech-level"
+                  name="tech-level"
+                  min="1"
+                  max="10"
+                  value="5"
+                />
+              </div>
+            </section>
 
-                        <div class="form-group">
-                            <label for="villain-type">Main antagonist archetype:</label>
-                            <input type="text" id="villain-type" name="villain-type" placeholder="e.g., Corrupt noble, Ancient evil, Misguided zealot..." required>
-                        </div>
+            <!-- Plot Questions -->
+            <section class="form-section">
+              <h2>Plot Elements</h2>
 
-                        <div class="form-group">
-                            <label>Campaign tone (Select primary):</label>
-                            <div class="radio-group">
-                                <label><input type="radio" name="tone" value="heroic"> Heroic</label>
-                                <label><input type="radio" name="tone" value="gritty"> Gritty</label>
-                                <label><input type="radio" name="tone" value="political"> Political</label>
-                                <label><input type="radio" name="tone" value="horror"> Horror</label>
-                            </div>
-                        </div>
+              <div class="form-group">
+                <label for="main-conflict"
+                  >What's the central conflict type?</label
+                >
+                <select id="main-conflict" name="main-conflict" required>
+                  <option value="person-vs-person">Person vs Person</option>
+                  <option value="person-vs-nature">Person vs Nature</option>
+                  <option value="person-vs-society">Person vs Society</option>
+                  <option value="person-vs-supernatural">
+                    Person vs Supernatural
+                  </option>
+                  <option value="person-vs-self">Person vs Self</option>
+                </select>
+              </div>
 
-                        <div class="form-group">
-                            <label for="key-locations">Key locations to include:</label>
-                            <input type="text" id="key-locations" name="key-locations" placeholder="e.g., Ancient ruins, Magical academy, Underground city..." required>
-                        </div>
-                    </section>
+              <div class="form-group">
+                <label for="plot-structure">Preferred plot structure:</label>
+                <select id="plot-structure" name="plot-structure" required>
+                  <option value="linear">Linear Adventure</option>
+                  <option value="branching">Branching Paths</option>
+                  <option value="sandbox">Sandbox Style</option>
+                  <option value="mystery">Mystery/Investigation</option>
+                </select>
+              </div>
 
-                    <!-- Special Requests -->
-                    <div class="form-group">
-                        <label for="special-requests">Additional requests or special considerations:</label>
-                        <textarea id="special-requests" name="special-requests" rows="4" placeholder="Any specific elements, themes, or preferences you'd like to include..."></textarea>
-                    </div>
+              <div class="form-group">
+                <label for="villain-type">Main antagonist archetype:</label>
+                <input
+                  type="text"
+                  id="villain-type"
+                  name="villain-type"
+                  placeholder="e.g., Corrupt noble, Ancient evil, Misguided zealot..."
+                  required
+                />
+              </div>
 
-                    <button type="submit" class="submit-btn">Submit Campaign Request</button>
-                </form>
+              <div class="form-group">
+                <label>Campaign tone (Select primary):</label>
+                <div class="radio-group">
+                  <label
+                    ><input type="radio" name="tone" value="heroic" />
+                    Heroic</label
+                  >
+                  <label
+                    ><input type="radio" name="tone" value="gritty" />
+                    Gritty</label
+                  >
+                  <label
+                    ><input type="radio" name="tone" value="political" />
+                    Political</label
+                  >
+                  <label
+                    ><input type="radio" name="tone" value="horror" />
+                    Horror</label
+                  >
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="key-locations">Key locations to include:</label>
+                <input
+                  type="text"
+                  id="key-locations"
+                  name="key-locations"
+                  placeholder="e.g., Ancient ruins, Magical academy, Underground city..."
+                  required
+                />
+              </div>
+            </section>
+
+            <!-- Special Requests -->
+            <div class="form-group">
+              <label for="special-requests"
+                >Additional requests or special considerations:</label
+              >
+              <textarea
+                id="special-requests"
+                name="special-requests"
+                rows="4"
+                placeholder="Any specific elements, themes, or preferences you'd like to include..."
+              ></textarea>
             </div>
+
+            <button
+              id="btnSubmit"
+              type="submit"
+              class="submit-btn"
+            >
+              Submit Campaign Request
+            </button>
+          </form>
         </div>
+      </div>
     </div>
-</body>
+  </body>
+
 </html>

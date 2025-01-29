@@ -9,6 +9,7 @@ Meta
   - SignUp
   - Data Collection
 
-- Database
-  - Save Questions
-  - Save Answers
+Critical:
+- Loading page
+- Mobile accessibility
+- 
