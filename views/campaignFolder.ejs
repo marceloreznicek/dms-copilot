@@ -23,9 +23,11 @@
       <%- include('partials/sidebar', { campaignList: campaignList }) %>
 
       <div class="main-content">
-        <h1>All Campaigns</h1>
+
         <div class="results-container">
+
           <div class="campaigns-grid">
+            <h1 class="all-campaigns-title">All Campaigns</h1>
             <% campaignList.forEach(campaign => { %>
             <a href="/results/<%= campaign.campaign_id %>" class="campaign-card">
               <div class="campaign-info">
