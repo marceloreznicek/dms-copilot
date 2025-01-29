@@ -10,6 +10,5 @@ Meta
   - Data Collection
 
 Critical:
-- Loading page
 - Mobile accessibility
 - 

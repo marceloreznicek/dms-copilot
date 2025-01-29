@@ -1,0 +1,104 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+  height: 60px;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #202123;
+}
+
+/* Navigation styles */
+.navbar {
+  display: none; /* Hidden by default */
+}
+
+.nav-link {
+  color: #6e6e80;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: color 0.3s;
+}
+
+.nav-link:hover {
+  color: #202123;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.settings-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #6e6e80;
+}
+
+.settings-btn:hover {
+  color: #202123;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.profile-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.username {
+  color: #202123;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+  /* Show navbar on mobile */
+  .navbar {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  /* Adjust header padding for mobile */
+  .header {
+    padding: 1rem;
+  }
+  
+  /* Hide username on mobile to save space */
+  .username {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  /* Hide navbar on desktop */
+  .navbar {
+    display: none;
+  }
+}
