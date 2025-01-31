@@ -32,9 +32,9 @@
             <a href="/results/<%= campaign.campaign_id %>" class="campaign-card">
               <div class="campaign-info">
                 <h3 class="campaign-title"><%= campaign.campaign_name %></h3>
-                <!-- <p class="campaign-description"><%= campaign.description %></p> -->
+                <p class="campaign-description"><%= campaign.campaign_tagline %></p>
                 <div class="campaign-meta">
-                  <span>Created <%= campaign.created_at %></span>
+                  <span>Created <%= new Date(campaign.created_at).toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' }) %></span>
                 </div>
               </div>
               <div class="like-section">

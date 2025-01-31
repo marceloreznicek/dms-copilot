@@ -4,7 +4,9 @@ const db = require("../db/queries");
 const handleCampaignOutput = async (campaignid, output) => {
   try {
     // console.log(campaignid)
-    const payload = generateOutputPayload(campaignid, output);
+    const campaignOutputs = extractAdventureDetails(output)
+    console.log(campaignOutputs)
+    const payload = generateOutputPayload(campaignid, output, campaignOutputs.campaignName, campaignOutputs.tagline);
     const result = await db.insertOutputData(payload);
 
     return result;
@@ -13,22 +15,30 @@ const handleCampaignOutput = async (campaignid, output) => {
   }
 };
 
-const generateOutputPayload = (campaignid, output) => {
+const generateOutputPayload = (campaignid, output, campaignName, campaignTagline) => {
   return {
     campaign_id: campaignid,
     output: output,
-    campaign_name: extractCampaignName(output)
+    campaign_name: campaignName,
+    campaign_tagline: campaignTagline
   };
 };
 
-const extractCampaignName = (output) => {
-  const regex = /"campaign_name":\s*"([^"]+)"/;
+const extractAdventureDetails = (output) => {
+  const regex = /"adventure_name":\s*"([^"]+)",\s*"tagline":\s*"([^"]+)"/;
   const match = output.match(regex);
-  let campaignName = "Not found";
+  
   if (match) {
-    campaignName = match[1]; // "Veil of Shadows"
+    return {
+      campaignName: match[1], // Extracts "A Tide of Treachery"
+      tagline: match[2] // Extracts "Unravel a conspiracy before the tide turns; time is running out!"
+    };
   }
-  return campaignName;
+
+  return {
+    campaignName: "Not found",
+    tagline: "Not found"
+  };
 };
 
 module.exports = {

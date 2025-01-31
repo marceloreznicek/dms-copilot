@@ -1,11 +1,10 @@
-const controllerForm = require("./controllerForm");
+const controllerForm = require("./aux/controllerForm");
+const parseJSONresults = require("./aux/parseJSONresults");
 const controllerInput = require("./controllerInput");
 const controllerOutput = require("./controllerOutput");
-const controllerOpenAI = require("./controllerOpenAI");
-const controllerCampaignList = require("./controllerCampaignList");
-
-const formatCampaignText = require("./htmlTextFormater");
-
+const controllerPromptProcessing = require("./promptProcessing/promptProcessing");
+const promptTest = require("./promptProcessing/promptTest.js");
+const controllerCampaignList = require("./aux/controllerCampaignList");
 const db = require("../db/queries");
 
 async function formGet(req, res) {
@@ -18,18 +17,19 @@ async function formGet(req, res) {
   });
 }
 
-async function formPublish(req, res) {
+async function formGenerateOneShot(req, res) {
+
   const formResponse = controllerForm.processFormResponse(req);
   console.log("Data treated");
   const campaignid = await controllerInput.handleCampaignSubmission(
-    formResponse
+    formResponse, req.ip
   );
   console.log("CampID: " + campaignid);
-  const openAIResponse = await controllerOpenAI.ProcessPrompt(formResponse);
+  const openAIResponse = await controllerPromptProcessing.generateCampaignResponse(formResponse, campaignid);
   console.log("OpenAI response received");
   await controllerOutput.handleCampaignOutput(
     campaignid,
-    openAIResponse.content
+    openAIResponse
   );
   console.log("Data ingested");
 
@@ -39,19 +39,18 @@ async function formPublish(req, res) {
 async function resultsGet(req, res) {
   const resultID = req.params.resultid;
   const results = await db.getResults(resultID);
-  const outputText = formatCampaignText(results.rows[0].output)
-  
+
   res.render("result", {
     pageTitle: "Dungeon Co-Pilot - Results ",
     userAvatar: "/images/avatar-placeholder.png",
     username: "User",
     campaignList: await controllerCampaignList.getCampaignList(),
-    campaignContent: outputText,
+    campaignData: parseJSONresults(results.rows[0].output),
   });
 }
 
 async function allCampaignsGet(req, res) {
-  const campaignList = await controllerCampaignList.getCampaignList()
+  const campaignList = await controllerCampaignList.getCampaignList();
 
   res.render("campaignFolder", {
     pageTitle: "Dungeon Co-Pilot - All Campaigns",
@@ -61,9 +60,19 @@ async function allCampaignsGet(req, res) {
   });
 }
 
+async function controllerPromptTest(req, res) {
+  await promptTest.testPrompt();
+  res.end()
+}
+
 module.exports = {
   formGet,
-  formPublish,
+  formGenerateOneShot,
   resultsGet,
-  allCampaignsGet
+  allCampaignsGet,
+  controllerPromptTest
 };
+
+
+
+

@@ -1,106 +1,115 @@
-/* Global styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* Results and Campaign styles */
-.results-container {
-  flex: 1;
-  padding: 2rem;
-  background-color: #343541;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-}
-
-.results-content {
-  text-align: left;
-}
-
-.results-content h1 {
-  color: white;
-  font-size: 2.5rem;
-  font-weight: bold;
-}
-
-.campaign-container {
-  color: #ffffff;
-  padding: 2rem;
-  font-size: 1rem;
-  line-height: 1.6;
-  max-width: 900px;
+/* Adventure Container */
+.adventure-container {
+  max-width: 1200px;
   margin: 0 auto;
+  background-color: #444654;
+  border-radius: 8px;
+  padding: 2rem;
+  color: white
 }
 
-.campaign-title {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid #565869;
+/* Header Section */
+.adventure-header {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #565869;
 }
 
-.campaign-pitch {
-  font-size: 1.2rem;
+.adventure-pitch {
+  color: white  ;
   margin-bottom: 2rem;
-  padding: 1rem;
-  background-color: #40414f;
-  border-radius: 4px;
-  line-height: 1.6;
 }
 
-.campaign-section {
-  margin: 2rem 0;
+.tagline {
+  color: #8e8ea0;
+  font-style: italic;
 }
 
-.section-title {
+/* Content Sections */
+
+.section-header {
+  color: #fff;
   font-size: 1.5rem;
-  font-weight: bold;
-  color: #a8b3cf;
-  text-transform: capitalize;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid #565869;
 }
 
+/* Summary Section */
+.summary-section {
+  line-height: 1.6;
+}
+
 .subsection {
-  margin: 1.5rem 0;
-  padding-left: 1rem;
-  border-left: 2px solid #565869;
-}
-
-.subsection-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #a8b3cf;
-  text-transform: capitalize;
-  margin-bottom: 0.75rem;
-}
-
-.campaign-item {
-  margin: 0.75rem 0;
-  padding-left: 1rem;
-}
-
-.item-key {
-  font-weight: bold;
-  color: #a8b3cf;
-  text-transform: capitalize;
-  margin-right: 0.5rem;
-}
-
-.item-value {
-  color: #ffffff;
-}
-
-.campaign-error {
-  color: #ff6b6b;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1rem;
   padding: 1rem;
-  margin: 1rem;
-  border: 1px solid #ff6b6b;
-  border-radius: 4px;
-  background-color: rgba(255, 107, 107, 0.1);
+  background-color: #343541;
+  border-radius: 5px;
+}
+
+/* Unique Element */
+.unique-element {
+  background-color: #202123;
+  margin: 1.5rem 0;
+}
+
+/* Mission Section */
+.mission-section {
+  background-color: #2a2b32;
+}
+
+.mission-section .hook {
+  color: #8e8ea0;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+/* Acts Section */
+
+.act-title {
+  color: #fff;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #5658696c;
+}
+
+.act-content {
+  display: grid;
+  gap: 1rem;
+}
+
+.plot-sub{
+  padding: 8px; 
+  margin: 10px 0px;
+  background-color: #40414f;
+  border-radius: 5px;
+  border-left: 3px solid #565869;
+}
+
+p {
+  margin-bottom: 0.8rem;
+}
+
+strong {
+  color: #8e8ea0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .adventure-container {
+    padding: 1rem;
+  }
+  
 }

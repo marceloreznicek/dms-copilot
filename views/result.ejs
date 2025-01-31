@@ -4,28 +4,76 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= pageTitle %></title>
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/results.css" />
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/results.css" />
 
     <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
-
     <script defer src="/js/header.js"></script>
-
   </head>
   <body>
-    <%- include('partials/header', { userAvatar: userAvatar, username: username
-    }) %>
+    <%- include('partials/header', { userAvatar, username }) %>
 
     <div class="main-layout">
-      <%- include('partials/sidebar', { campaignList: campaignList }) %>
+      <%- include('partials/sidebar', { campaignList }) %>
 
       <div class="main-content">
-        <div class="results-container">
-          <div class="results-content">
-            <p class="campaign-content"><%- campaignContent %></p>
+        <div class="adventure-container">
+          <!-- Adventure Overview -->
+          <header class="adventure-header">
+            <h1><%= campaignData.adventure_name %></h1>
+            <p class="tagline"><%= campaignData.tagline %></p>
+          </header>
+
+          <p class="adventure-pitch">
+            <%= campaignData.summary.adventure_pitch %>
+          </p>
+
+          <!-- World Information -->
+          <div class="subsection">
+            <h2 class="section-header">The World</h2>
+            <strong>Context</strong>
+            <p><%= campaignData.summary.world_context %></p>
+
+            <strong>Concept</strong>
+            <p><%= campaignData.unique_element.concept %></p>
+
+            <strong>Impact</strong>
+            <p><%= campaignData.unique_element.impact %></p>
           </div>
+
+          <!-- Plot Section -->
+          <div class="subsection">
+            <h2 class="section-header">The Plot</h2>
+
+            <strong>Summary</strong>
+            <p><%= campaignData.mission.plot_summary %></p>
+
+            <strong>Complication</strong>
+            <p><%= campaignData.mission.complication %></p>
+
+            <strong>Hook</strong>
+            <p><%= campaignData.mission.hook %></p>
+
+            <strong>World stakes</strong>
+            <p><%= campaignData.mission.stakes.world %></p>
+
+            <strong>Personal stakes</strong>
+            <p><%= campaignData.mission.stakes.personal %></p>
+          </div>
+
+          <!-- Acts Section -->
+          <section class="subsection">
+            <h2 class="section-header">The Acts</h2>
+            <%- include('partials/act', { act: campaignData.acts.act1,
+            actNumber: 1 }) %> <%- include('partials/act', { act:
+            campaignData.acts.act2, actNumber: 2 }) %> <%-
+            include('partials/act', { act: campaignData.acts.act3, actNumber: 3
+            }) %>
+          </section>
         </div>
       </div>
     </div>

@@ -4,6 +4,9 @@ const path = require("node:path");
 const app = express()
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+// app.set('trust proxy', true);
+
+app.use(express.urlencoded({ extended: true }));
 
 // Make the static middleware more specific for js files
 app.use('/js', express.static(path.join(__dirname, 'public/js')))

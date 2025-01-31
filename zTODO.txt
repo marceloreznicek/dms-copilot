@@ -1,7 +1,3 @@
-UI
-
-Features
-- Most basic
 
 Meta
 - Login
@@ -9,6 +5,3 @@ Meta
   - SignUp
   - Data Collection
 
-Critical:
-- Mobile accessibility
-- 

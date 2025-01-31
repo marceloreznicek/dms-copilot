@@ -1,0 +1,38 @@
+<!-- views/partials/act.ejs -->
+
+  <h3 class="act-title">Act <%= actNumber %></h3>
+
+    <% if (act.summary) { %>
+    <strong>Summary:</strong>
+    <p><%= act.summary %></p>
+    <% } %>
+
+    <strong>Location:</strong>
+    <p><%= act.location %></p>
+    <strong>Challenge:</strong>
+    <p><%= act.challenge %></p>
+
+    <% if (act.objective) { %>
+    <strong>Objective:</strong>
+    <p><%= act.objective %></p>
+    <% } %> <% if (act.escalation) { %>
+    <% } %> <% if (act.setback) { %>
+    <strong>Set Back:</strong>
+    <p><%= act.setback %></p>
+    <% } %>
+
+    <strong>Revelation:</strong>
+    <p><%= act.revelation %></p>
+
+    <% if (act.gm_guide) { %>
+    <strong>GM's Guide:</strong>
+    <p><%= act.gm_guide %></p>
+    <strong>GM's Move:</strong>
+    <p><%= act.escalation %></p>
+
+    <% } %> <% if (act.climax) { %>
+    <strong>Climax:</strong>
+    <p><%= act.climax %></p>
+    <% } %>
+
+
