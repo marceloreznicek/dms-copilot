@@ -66,6 +66,6 @@
   }
   
   .sidebar {
-    height: calc(100vh - 60px); /* Subtract header height */
+    height: auto; /* Subtract header height */
   }
 }

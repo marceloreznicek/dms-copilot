@@ -5,7 +5,6 @@ const handleCampaignOutput = async (campaignid, output) => {
   try {
     // console.log(campaignid)
     const campaignOutputs = extractAdventureDetails(output)
-    console.log(campaignOutputs)
     const payload = generateOutputPayload(campaignid, output, campaignOutputs.campaignName, campaignOutputs.tagline);
     const result = await db.insertOutputData(payload);
 
