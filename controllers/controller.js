@@ -9,6 +9,12 @@ const controllerCampaignList = require("./aux/controllerCampaignList");
 const analytics = require("../analytics/basicAnalytics");
 const db = require("../db/queries");
 
+
+async function homeGet(req, res){
+  analytics.saveEvent(req, "viewHome")
+  res.render("home")
+}
+
 async function formGet(req, res) {
   analytics.saveEvent(req, "viewForm")
 
@@ -24,20 +30,16 @@ async function formGet(req, res) {
 async function formGenerateOneShot(req, res) {
   const formResponse = controllerForm.processFormResponse(req);
   analytics.saveEvent(req, "generateOneShot", eventParam = formResponse)
-
-  console.log("Data treated");
   user_ip = auxFunc.getClientIP()
   const campaignid = await controllerInput.handleCampaignSubmission(
     formResponse, req.ip
   );
   console.log("CampID: " + campaignid);
   const openAIResponse = await controllerPromptProcessing.generateCampaignResponse(formResponse, campaignid);
-  console.log("OpenAI response received");
   await controllerOutput.handleCampaignOutput(
     campaignid,
     openAIResponse
   );
-  console.log("Data ingested");
 
   res.redirect("results/" + campaignid);
 }
@@ -74,6 +76,7 @@ async function controllerPromptTest(req, res) {
 }
 
 module.exports = {
+  homeGet,
   formGet,
   formGenerateOneShot,
   resultsGet,

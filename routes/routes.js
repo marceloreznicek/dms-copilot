@@ -6,7 +6,8 @@ const controller = require("../controllers/controller");
 const controllerForm = require("../controllers/aux/controllerForm");
 
 
-router.get("/", (req, res) => res.redirect("/form"));
+router.get("/", controller.homeGet);
+router.get("/home", controller.homeGet);
 
 router.get("/form", controller.formGet);
 router.post("/generate-one-shot", controller.formGenerateOneShot);

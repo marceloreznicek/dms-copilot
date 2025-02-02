@@ -1,0 +1,61 @@
+<!-- views/home.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/home.css" />
+    <title>My Dungeon Copilot</title>
+</head>
+<body>
+    <%
+    // Create an array of image numbers and shuffle it
+    const imageNumbers = [1, 2, 3, 4, 5, 6, 7, 8];
+    for (let i = imageNumbers.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [imageNumbers[i], imageNumbers[j]] = [imageNumbers[j], imageNumbers[i]];
+    }
+    %>
+    <div class="grid-container">
+        <!-- Top row -->
+        <div class="grid-item">
+            <img src="/images/home/imgHome<%= imageNumbers[0] %>.png" alt="DnD Image <%= imageNumbers[0] %>">
+        </div>
+        <div class="grid-item">
+            <img src="/images/home/imgHome<%= imageNumbers[1] %>.png" alt="DnD Image <%= imageNumbers[1] %>">
+        </div>
+        <div class="grid-item">
+            <img src="/images/home/imgHome<%= imageNumbers[2] %>.png" alt="DnD Image <%= imageNumbers[2] %>">
+        </div>
+
+        <!-- Middle row -->
+        <div class="grid-item">
+            <img src="/images/home/imgHome<%= imageNumbers[3] %>.png" alt="DnD Image <%= imageNumbers[3] %>">
+        </div>
+        <div class="grid-item center-content">
+            <div class="title-container">
+                <h1 class="site-title">My Dungeon Copilot</h1>
+                <img src="/images/torch_white.png" alt="torch_white" class="torch-image">
+            </div>
+            <div class="button-container">
+                <a class="button" href="/form">Create Campaign</a>
+                <a class="button" href="/campaigns">Browse Campaigns</a>
+            </div>
+        </div>
+        <div class="grid-item">
+            <img src="/images/home/imgHome<%= imageNumbers[4] %>.png" alt="DnD Image <%= imageNumbers[4] %>">
+        </div>
+
+        <!-- Bottom row -->
+        <div class="grid-item">
+            <img src="/images/home/imgHome<%= imageNumbers[5] %>.png" alt="DnD Image <%= imageNumbers[5] %>">
+        </div>
+        <div class="grid-item">
+            <img src="/images/home/imgHome<%= imageNumbers[6] %>.png" alt="DnD Image <%= imageNumbers[6] %>">
+        </div>
+        <div class="grid-item">
+            <img src="/images/home/imgHome<%= imageNumbers[7] %>.png" alt="DnD Image <%= imageNumbers[7] %>">
+        </div>
+    </div>
+</body>
+</html>

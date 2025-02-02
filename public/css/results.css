@@ -2,37 +2,36 @@
 .adventure-container {
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #444654;
+  background-color: #1a1625; /* Deep purple background */
   border-radius: 8px;
   padding: 2rem;
-  color: white
+  color: #e2e2f5; /* Soft purple-white for main text */
 }
 
 /* Header Section */
 .adventure-header {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #565869;
+  border-bottom: 1px solid #2d2b3a; /* Subtle border */
 }
 
 .adventure-pitch {
-  color: white  ;
+  color: #e2e2f5; /* Soft purple-white */
   margin-bottom: 2rem;
 }
 
 .tagline {
-  color: #8e8ea0;
+  color: #9d9db1; /* Muted purple-grey */
   font-style: italic;
 }
 
 /* Content Sections */
-
 .section-header {
-  color: #fff;
+  color: #e2e2f5;
   font-size: 1.5rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid #565869;
+  border-bottom: 1px solid #2d2b3a;
 }
 
 /* Summary Section */
@@ -46,35 +45,34 @@
   gap: 10px;
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #343541;
+  background-color: #201c2b; /* Slightly lighter purple */
   border-radius: 5px;
 }
 
 /* Unique Element */
 .unique-element {
-  background-color: #202123;
+  background-color: #151320; /* Darkest purple */
   margin: 1.5rem 0;
 }
 
 /* Mission Section */
 .mission-section {
-  background-color: #2a2b32;
+  background-color: #201c2b;
 }
 
 .mission-section .hook {
-  color: #8e8ea0;
+  color: #b8b7c7; /* Lighter muted purple */
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
 
 /* Acts Section */
-
 .act-title {
-  color: #fff;
+  color: #e2e2f5;
   margin-bottom: 1rem;
   margin-top: 1rem;
   padding-bottom: 5px;
-  border-bottom: 2px solid #5658696c;
+  border-bottom: 2px solid #2d2b3a;
 }
 
 .act-content {
@@ -82,12 +80,12 @@
   gap: 1rem;
 }
 
-.plot-sub{
+.plot-sub {
   padding: 8px; 
   margin: 10px 0px;
-  background-color: #40414f;
+  background-color: #201c2b;
   border-radius: 5px;
-  border-left: 3px solid #565869;
+  border-left: 3px solid #6b47a3; /* Rich purple accent */
 }
 
 p {
@@ -95,7 +93,7 @@ p {
 }
 
 strong {
-  color: #8e8ea0;
+  color: #a18fff; /* Bright purple for emphasis */
 }
 
 /* Responsive Design */
@@ -111,5 +109,4 @@ strong {
   .adventure-container {
     padding: 1rem;
   }
-  
 }
