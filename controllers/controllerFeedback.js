@@ -15,9 +15,9 @@ async function getFeedback(req, res) {
 
 async function postFeedback(req, res) {
   analytics.saveEvent(req, "postFeedback", {
-    email: req.params.email,
-    rating: req.params.rating,
-    comments: req.params.comments,
+    email: req.body.email,
+    rating: req.body.rating,
+    comments: req.body.comments,
   });
   res.redirect("/")
 }
