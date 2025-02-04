@@ -15,149 +15,167 @@
 
     <script defer src="/js/loadingContainer.js"></script>
     <script defer src="/js/header.js"></script>
-    
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=AW-16853664559"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
 
-      gtag("config", "AW-16853664559");
-    </script>
+        <!-- Google tag (gtag.js) -->
+        <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=AW-16853664559"
+      ></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("js", new Date());
+  
+        gtag("config", "AW-16853664559");
+      </script>
+      
   </head>
   <body>
     <%- include('partials/header', { userAvatar: userAvatar, username: username
     }) %>
 
     <div class="main-layout">
-      <%- include('partials/loadingContainer') %> <%-
-      include('partials/sidebar', { campaignList: campaignList }) %>
+      <%- include('partials/loadingContainer') %>
+      <%- include('partials/sidebar', { campaignList: campaignList }) %>
+
 
       <div class="main-content">
         <div class="form-container">
           <h1 class="formTitle">Campaign Generator</h1>
 
-          <form
-            action="/generate-one-shot"
-            method="POST"
-            class="generator-form"
-          >
+
+          <form action="/generate-one-shot" method="POST" class="generator-form">
             <div class="form-header">
-              <h1>One-Shot Adventure Generator</h1>
+                <h1>One-Shot Adventure Generator</h1>
             </div>
 
-            <% const questions = [ { id: 'magicLevel', question: "How prevalent
-            is magic in your world? (This affects everything from daily life to
-            plot possibilities)", options: ["No Magic", "Rare and Mysterious",
-            "Common but Regulated", "High Magic"], type: 'worldbuilding' }, {
-            id: 'techLevel', question: "What's the technological level of your
-            setting?", options: ["Medieval", "Renaissance", "Industrial",
-            "Steampunk"], type: 'worldbuilding' }, { id: 'environment',
-            question: "What's the primary environment where the adventure takes
-            place?", options: ["Urban", "Wilderness", "Underground", "Coastal",
-            "Mountain", "Desert", "Outer Space"], type: 'worldbuilding' }, { id:
-            'races', question: "Which non-human races play significant roles in
-            your world's society?", type: 'worldbuilding', multiSelect: true,
-            options: ["Elves", "Dwarves", "Orcs", "Goblins", "Lizardfolk",
-            "Vampires", "Werewolves", "Merfolk", "Centaurs", "Minotaurs"] }, {
-            id: 'conflictType', question: "What type of central conflict drives
-            your story?", options: ["Heist", "Personal Vendetta", "Ancient
-            Prophecy", "Mysterious Artifact", "Political Conspiracy",
-            "Environmental Crisis"], type: 'plot' }, { id: 'hook', question:
-            "What's the immediate hook that draws the players in?", options:
-            ["Urgent Request for Help", "Discovery of a Secret", "Personal
-            Connection", "Promise of Reward", "Moral Obligation"], type: 'plot'
-            }, { id: 'timeConstraint', question: "What time pressure exists in
-            your story?", options: ["24 Hours", "A Week", "A Month", "No Time
-            Pressure"], type: 'plot' }, { id: 'antagonistType', question: "What
-            type of antagonist opposes the party?", options: ["Individual
-            Villain", "Monster/Creature", "Organization", "Natural Force",
-            "Cosmic Entity"], type: 'plot' }, ]; %>
+            <% 
+            const questions = [
+                {
+                    id: 'magicLevel',
+                    question: "How prevalent is magic in your world? (This affects everything from daily life to plot possibilities)",
+                    options: ["No Magic", "Rare and Mysterious", "Common but Regulated", "High Magic"],
+                    type: 'worldbuilding'
+                },
+                {
+                    id: 'techLevel',
+                    question: "What's the technological level of your setting?",
+                    options: ["Medieval", "Renaissance", "Industrial", "Steampunk"],
+                    type: 'worldbuilding'
+                },
+                {
+                    id: 'environment',
+                    question: "What's the primary environment where the adventure takes place?",
+                    options: ["Urban", "Wilderness", "Underground", "Coastal", "Mountain", "Desert", "Outer Space"],
+                    type: 'worldbuilding'
+                },
+                {
+                    id: 'races',
+                    question: "Which non-human races play significant roles in your world's society?",
+                    type: 'worldbuilding',
+                    multiSelect: true,
+                    options: ["Elves", "Dwarves", "Orcs", "Goblins", "Lizardfolk", "Vampires", "Werewolves", "Merfolk", "Centaurs", "Minotaurs"]
+                },
+
+                {
+                    id: 'conflictType',
+                    question: "What type of central conflict drives your story?",
+                    options: ["Heist", "Personal Vendetta", "Ancient Prophecy", "Mysterious Artifact", "Political Conspiracy", "Environmental Crisis"],
+                    type: 'plot'
+                },
+                {
+                    id: 'hook',
+                    question: "What's the immediate hook that draws the players in?",
+                    options: ["Urgent Request for Help", "Discovery of a Secret", "Personal Connection", "Promise of Reward", "Moral Obligation"],
+                    type: 'plot'
+                },
+                {
+                    id: 'timeConstraint',
+                    question: "What time pressure exists in your story?",
+                    options: ["24 Hours", "A Week", "A Month", "No Time Pressure"],
+                    type: 'plot'
+                },
+                {
+                    id: 'antagonistType',
+                    question: "What type of antagonist opposes the party?",
+                    options: ["Individual Villain", "Monster/Creature", "Organization", "Natural Force", "Cosmic Entity"],
+                    type: 'plot'
+                },
+            ];
+            %>
 
             <div class="section-container">
-              <h2 class="section-title">World Building</h2>
-              <% questions.filter(q => q.type ===
-              'worldbuilding').forEach(question => { %>
-              <div class="question-container">
-                <h3 class="question-title"><%= question.question %></h3>
-                <div class="options-grid">
-                  <% if (question.multiSelect) { %> <%
-                  question.options.forEach(option => { %>
-                  <label class="option-label">
-                    <input
-                      type="checkbox"
-                      name="<%= question.id %>[]"
-                      value="<%= option %>"
-                    />
-                    <span class="option-text"><%= option %></span>
-                  </label>
-                  <% }); %> <% } else { %> <% question.options.forEach(option =>
-                  { %>
-                  <label class="option-label">
-                    <input
-                      type="radio"
-                      name="<%= question.id %>"
-                      value="<%= option %>"
-                    />
-                    <span class="option-text"><%= option %></span>
-                  </label>
-                  <% }); %> <% } %>
-                </div>
-              </div>
-              <% }); %>
+                <h2 class="section-title">World Building</h2>
+                <% questions.filter(q => q.type === 'worldbuilding').forEach(question => { %>
+                    <div class="question-container">
+                        <h3 class="question-title"><%= question.question %></h3>
+                        <div class="options-grid">
+                            <% if (question.multiSelect) { %>
+                                <% question.options.forEach(option => { %>
+                                    <label class="option-label">
+                                        <input type="checkbox" name="<%= question.id %>[]" value="<%= option %>">
+                                        <span class="option-text"><%= option %></span>
+                                    </label>
+                                <% }); %>
+                            <% } else { %>
+                                <% question.options.forEach(option => { %>
+                                    <label class="option-label">
+                                        <input type="radio" name="<%= question.id %>" value="<%= option %>">
+                                        <span class="option-text"><%= option %></span>
+                                    </label>
+                                <% }); %>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }); %>
+                
+            
             </div>
 
             <div class="section-container">
-              <h2 class="section-title">Plot Elements</h2>
-              <% questions.filter(q => q.type === 'plot').forEach(question => {
-              %>
-              <div class="question-container">
-                <h3 class="question-title"><%= question.question %></h3>
-                <div class="options-grid">
-                  <% if (question.multiSelect) { %> <%
-                  question.options.forEach(option => { %>
-                  <label class="option-label">
-                    <input
-                      type="checkbox"
-                      name="<%= question.id %>[]"
-                      value="<%= option %>"
-                    />
-                    <span class="option-text"><%= option %></span>
-                  </label>
-                  <% }); %> <% } else { %> <% question.options.forEach(option =>
-                  { %>
-                  <label class="option-label">
-                    <input
-                      type="radio"
-                      name="<%= question.id %>"
-                      value="<%= option %>"
-                    />
-                    <span class="option-text"><%= option %></span>
-                  </label>
-                  <% }); %> <% } %>
+                <h2 class="section-title">Plot Elements</h2>
+                <% questions.filter(q => q.type === 'plot').forEach(question => { %>
+                    <div class="question-container">
+                        <h3 class="question-title"><%= question.question %></h3>
+                        <div class="options-grid">
+                            <% if (question.multiSelect) { %>
+                                <% question.options.forEach(option => { %>
+                                    <label class="option-label">
+                                        <input type="checkbox" name="<%= question.id %>[]" value="<%= option %>">
+                                        <span class="option-text"><%= option %></span>
+                                    </label>
+                                <% }); %>
+                            <% } else { %>
+                                <% question.options.forEach(option => { %>
+                                    <label class="option-label">
+                                        <input type="radio" name="<%= question.id %>" value="<%= option %>">
+                                        <span class="option-text"><%= option %></span>
+                                    </label>
+                                <% }); %>
+                            <% } %>
+                        </div>
+                    </div>
+                <% }); %>
+                
+                <div class="question-container">
+                    <h3 class="question-title">Additional Plot Comments</h3>
+                    <textarea 
+                        name="plotComments" 
+                        class="comment-textarea" 
+                        placeholder="Add any specific plot elements, twists, or story elements you'd like to include..."
+                        rows="4"
+                    ></textarea>
                 </div>
-              </div>
-              <% }); %>
-
-              <div class="question-container">
-                <h3 class="question-title">Additional Plot Comments</h3>
-                <textarea
-                  name="plotComments"
-                  class="comment-textarea"
-                  placeholder="Add any specific plot elements, twists, or story elements you'd like to include..."
-                  rows="4"
-                ></textarea>
-              </div>
             </div>
 
             <button type="submit" class="submit-btn">Generate Adventure</button>
-          </form>
+        </form>
+
+
+
+          
         </div>
       </div>
     </div>
