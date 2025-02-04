@@ -32,6 +32,7 @@ WORLD CREATION GUIDELINES:
 
 RESTRICTIONS:
 - No generic fantasy tropes (ancient prophecies, chosen ones, evil dragons)
+- No generic items or artifacts
 - No overly complex political situations
 - No world-ending threats (keep it focused and local)
 - No "fetch quest" style missions
@@ -60,12 +61,12 @@ const adventureJSONFormat = {
   properties: {
     adventure_name: {
       type: "string",
-      description: "The title of the adventure (max 10 words) - Avoid cliches, be original.",
+      description: "The title of the adventure (max 10 words) - Avoid cliches, be original - - Do not use cliches like 'Shadows of..', 'Whispers of..'",
     },
     tagline: {
       type: "string",
       description:
-        "A short summary of what this adventure is about (max 15 words).",
+        "A short summary of what this adventure is about (max 15 words) - Don't be generic, be specific.",
     },
     summary: {
       type: "object",

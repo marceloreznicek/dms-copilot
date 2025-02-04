@@ -14,6 +14,7 @@ router.post("/generate-one-shot", controller.formGenerateOneShot);
 
 router.get("/results/:resultid", controller.resultsGet);
 router.get("/campaigns", controller.allCampaignsGet);
+router.get("/campaigns/search", controller.seachCampaignsGet);
 
 router.use("/users", userRouter)
 

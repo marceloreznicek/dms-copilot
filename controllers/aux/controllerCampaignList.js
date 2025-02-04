@@ -1,8 +1,8 @@
 const db = require("../../db/queries")
 
-async function getCampaignList() {
+async function getCampaignList(filter = "") {
   try {
-  const campaignList = await db.getCampaignList()
+  const campaignList = await db.getCampaignList(filter)
   return campaignList.rows
 }catch(err) {console.log(err)}
 }

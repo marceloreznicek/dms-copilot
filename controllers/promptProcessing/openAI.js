@@ -18,6 +18,7 @@ async function runPrompt(promptList, responseFormat, modelType = "gpt-4o-mini") 
     store: true,
     messages: promptList, //[{ role: "user", content: prompt }]
     response_format: responseFormat,
+    // temperature: 1.5
   });
 
   return completion;

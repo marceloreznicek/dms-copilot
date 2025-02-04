@@ -11,9 +11,9 @@
     <link rel="stylesheet" href="/css/campaignFolder.css" />
 
     <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
-    
-    <script defer src="/js/header.js"></script>
 
+    <script defer src="/js/header.js"></script>
+    <script defer src="/js/resultsSearch.js"></script>
   </head>
   <body>
     <%- include('partials/header', { userAvatar: userAvatar, username: username
@@ -23,21 +23,42 @@
       <%- include('partials/sidebar', { campaignList: campaignList }) %>
 
       <div class="main-content">
-
         <div class="results-container">
-
           <div class="campaigns-grid">
-            <h1 class="all-campaigns-title">All Campaigns</h1>
+            <h1 class="all-campaigns-title"><%= pageTitle %></h1>
+
+            <div class="search-section">
+              <div class="search-container">
+                <input 
+                  type="text" 
+                  id="campaignSearch" 
+                  class="search-input" 
+                  placeholder="Search campaigns..."
+                >
+                <button class="search-button">Search</button>
+              </div>
+            </div>
+            
             <% campaignList.forEach(campaign => { %>
-            <a href="/results/<%= campaign.campaign_id %>" class="campaign-card">
+            <a
+              href="/results/<%= campaign.campaign_id %>"
+              class="campaign-card"
+            >
               <div class="campaign-info">
                 <h3 class="campaign-title"><%= campaign.campaign_name %></h3>
-                <p class="campaign-description"><%= campaign.campaign_tagline %></p>
+                <p class="campaign-description">
+                  <%= campaign.campaign_tagline %>
+                </p>
                 <div class="campaign-meta">
-                  <span>Created <%= new Date(campaign.created_at).toLocaleDateString("en-US", { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' }) %></span>
+                  <span
+                    ><%= new
+                    Date(campaign.created_at).toLocaleDateString("en-US", {
+                    weekday: 'short', year: 'numeric', month: 'short', day:
+                    '2-digit' }) %></span
+                  >
                 </div>
               </div>
-              <div class="like-section">
+              <!-- <div class="like-section">
                 <button
                   class="like-button <%= campaign.isLiked ? 'liked' : '' %>"
                   onclick="toggleLike(event, '<%= campaign.id %>')"
@@ -45,7 +66,7 @@
                   ♥
                 </button>
                 <span class="like-count"><%= campaign.likes %></span>
-              </div>
+              </div> -->
             </a>
             <% }); %>
           </div>

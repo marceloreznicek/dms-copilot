@@ -53,6 +53,7 @@ async function resultsGet(req, res) {
     pageTitle: "Dungeon Co-Pilot - Results ",
     userAvatar: "/images/avatar-placeholder.png",
     username: "User",
+    pageTitle: "All Campaigns",
     campaignList: await controllerCampaignList.getCampaignList(),
     campaignData: parseJSONresults(results.rows[0].output),
   });
@@ -63,7 +64,20 @@ async function allCampaignsGet(req, res) {
   const campaignList = await controllerCampaignList.getCampaignList();
 
   res.render("campaignFolder", {
-    pageTitle: "Dungeon Co-Pilot - All Campaigns",
+    pageTitle: "All Campaigns",
+    userAvatar: "/images/avatar-placeholder.png",
+    username: "User",
+    campaignList: campaignList,
+  });
+}
+
+async function seachCampaignsGet(req, res) {
+  analytics.saveEvent(req,"viewCampaignFolder", {search_term: req.query.search_term})
+  console.log("Search Term: " + req.query.search_term)
+  const campaignList = await controllerCampaignList.getCampaignList(req.query.search_term);
+
+  res.render("campaignFolder", {
+    pageTitle: "Search: " + req.query.search_term,
     userAvatar: "/images/avatar-placeholder.png",
     username: "User",
     campaignList: campaignList,
@@ -81,7 +95,8 @@ module.exports = {
   formGenerateOneShot,
   resultsGet,
   allCampaignsGet,
-  controllerPromptTest
+  controllerPromptTest,
+  seachCampaignsGet
 };
 
 

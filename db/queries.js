@@ -41,9 +41,23 @@ async function getResults(id) {
   return results
 }
 
-async function getCampaignList() {
+async function getCampaignList(filter) {
+  let filterQuery = ""
+  if (filter !== "") {
+    filterQuery = `WHERE lower(output) LIKE '%${filter}%'`
+  }
   const query = `
-  SELECT campaign_id, campaign_name, campaign_tagline, created_at, FLOOR(RANDOM() * 11) as likes, false as isLiked FROM campaign_outputs ORDER BY created_at DESC LIMIT 20`
+  SELECT 
+    campaign_id, 
+    campaign_name, 
+    campaign_tagline, 
+    created_at, 
+    FLOOR(RANDOM() * 11) as likes, 
+    false as isLiked 
+  FROM campaign_outputs 
+    ${filterQuery}
+    ORDER BY created_at 
+    DESC LIMIT 20`
   const results = await pool.query(query)
   return results
 }

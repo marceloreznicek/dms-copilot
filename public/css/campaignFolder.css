@@ -100,5 +100,91 @@
 }
 
 .all-campaigns-title {
+  margin-top: 10px;
   color:white
+}
+
+.search-section {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.search-container {
+  display: flex;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+.search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  background-color: #343541;
+  border: 1px solid #565869;
+  border-radius: 8px;
+  color: white;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-input::placeholder {
+  color: #8e8ea0;
+}
+
+.search-input:focus {
+  border-color: #565869;
+  box-shadow: 0 0 0 2px rgba(86, 88, 105, 0.3);
+}
+
+.search-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #565869;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.search-button:hover {
+  background-color: #666879;
+}
+
+.search-button:active {
+  background-color: #464759;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+  .search-section {
+    margin-bottom: 1rem;
+  }
+  
+  .search-container {
+    gap: 0.5rem;
+  }
+  
+  .search-input {
+    padding: 0.6rem 0.75rem;
+    font-size: 0.9rem;
+  }
+  
+  .search-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* For very small screens */
+@media screen and (max-width: 380px) {
+  .search-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .search-button {
+    width: 100%;
+  }
 }
