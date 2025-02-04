@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= pageTitle %></title>
 
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/form.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/loadingContainer.css" />
+
+    <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
+
+    <script defer src="/js/loadingContainer.js"></script>
+    <script defer src="/js/header.js"></script>
+    
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -19,17 +30,6 @@
 
       gtag("config", "AW-16853664559");
     </script>
-
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/form.css" />
-    <link rel="stylesheet" href="/css/header.css" />
-    <link rel="stylesheet" href="/css/sidebar.css" />
-    <link rel="stylesheet" href="/css/loadingContainer.css" />
-
-    <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
-
-    <script defer src="/js/loadingContainer.js"></script>
-    <script defer src="/js/header.js"></script>
   </head>
   <body>
     <%- include('partials/header', { userAvatar: userAvatar, username: username
