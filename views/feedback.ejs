@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/feedback.css" />
+
+    <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
+    <script defer src="/js/header.js"></script>
+  </head>
+  <body>
+    <%- include('partials/header', { userAvatar: userAvatar, username: username }) %>
+
+    <div class="main-layout">
+      <%- include('partials/sidebar', { campaignList: campaignList }) %>
+
+      <div class="main-content">
+        <div class="feedback-container">
+          <h1 class="feedback-title">Send Feedback</h1>
+          
+          <form class="feedback-form" action="/feedback" method="POST">
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                class="form-input"
+                placeholder="Enter your email"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="rating">Overall Experience *</label>
+              <div class="rating-container">
+                <% for(let i = 1; i <= 5; i++) { %>
+                  <div class="rating-option">
+                    <input 
+                      type="radio" 
+                      id="rating<%= i %>" 
+                      name="rating" 
+                      value="<%= i %>" 
+                      required
+                    >
+                    <label for="rating<%= i %>"><%= i %></label>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="comments">Additional Comments</label>
+              <textarea 
+                id="comments" 
+                name="comments" 
+                class="form-textarea"
+                placeholder="Share your thoughts with us..."
+                rows="5"
+              ></textarea>
+            </div>
+
+            <button type="submit" class="submit-button">Submit Feedback</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

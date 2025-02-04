@@ -1,0 +1,62 @@
+.footer {
+  background-color: #343541;
+  padding: 1.5rem 0;
+  margin-top: auto;
+  width: 100%;
+  border-top: 1px solid #565869;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-company {
+  color: #ffffff;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.footer-contact {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.95rem;
+}
+
+.footer-link {
+  color: #a8b3cf;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: #ffffff;
+}
+
+.footer-separator {
+  color: #565869;
+}
+
+@media screen and (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .footer-contact {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .footer-separator {
+    display: none;
+  }
+}

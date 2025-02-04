@@ -3,7 +3,7 @@ const router = Router();
 const userRouter = require("./userRoutes")
 
 const controller = require("../controllers/controller");
-const controllerForm = require("../controllers/aux/controllerForm");
+const contFeedback = require("../controllers/controllerFeedback");
 
 
 router.get("/", controller.homeGet);
@@ -15,6 +15,9 @@ router.post("/generate-one-shot", controller.formGenerateOneShot);
 router.get("/results/:resultid", controller.resultsGet);
 router.get("/campaigns", controller.allCampaignsGet);
 router.get("/campaigns/search", controller.seachCampaignsGet);
+
+router.get("/feedback", contFeedback.getFeedback);
+router.post("/feedback", contFeedback.postFeedback);
 
 router.use("/users", userRouter)
 
