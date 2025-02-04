@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= pageTitle %></title>
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=AW-16853664559"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "AW-16853664559");
+    </script>
+    
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/results.css" />
     <link rel="stylesheet" href="/css/header.css" />
@@ -29,16 +45,16 @@
 
             <div class="search-section">
               <div class="search-container">
-                <input 
-                  type="text" 
-                  id="campaignSearch" 
-                  class="search-input" 
+                <input
+                  type="text"
+                  id="campaignSearch"
+                  class="search-input"
                   placeholder="Search campaigns..."
-                >
+                />
                 <button class="search-button">Search</button>
               </div>
             </div>
-            
+
             <% campaignList.forEach(campaign => { %>
             <a
               href="/results/<%= campaign.campaign_id %>"
