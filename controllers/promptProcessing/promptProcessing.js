@@ -5,7 +5,7 @@ const db = require("../../db/queries");
 async function generateCampaignResponse(formData, campaignid) {
 
   const openAIPromptList = prompts.buildPromptList(formData)
-  const openAIResponse = await openAI.runPrompt(openAIPromptList.promptList, openAIPromptList.jsonFormat, modelType= "gpt-4o-mini"); //
+  const openAIResponse = await openAI.runPrompt(openAIPromptList.promptList, openAIPromptList.jsonFormat, modelType= process.env.API_MODEL); //
   const promptCompiled = openAIPromptList.promptList.map((prompt) => prompt.message).join(",")
 
 

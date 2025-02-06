@@ -66,7 +66,7 @@ const adventureJSONFormat = {
     tagline: {
       type: "string",
       description:
-        "A short summary of what this adventure is about (max 15 words) - Don't be generic, be specific.",
+        "A short whimsical summary of what this adventure is about (max 15 words) - Don't be generic, be specific.",
     },
     summary: {
       type: "object",
