@@ -15,7 +15,7 @@
 
     <script defer src="/js/header.js"></script>
     <script defer src="/js/resultsSearch.js"></script>
-    
+
     <!-- Google tag (gtag.js) -->
     <script
       async
@@ -39,7 +39,14 @@
       <%- include('partials/sidebar', { campaignList: campaignList }) %>
 
       <div class="main-content">
+
+        <div class="action-buttons-container">
+          <a class="action-button" href="/form?source=center_button">Build your own campaign</a>
+        </div>
+
+
         <div class="results-container">
+
           <div class="campaigns-grid">
             <h1 class="all-campaigns-title"><%= pageTitle %></h1>
 

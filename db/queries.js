@@ -44,7 +44,7 @@ async function getResults(id) {
 async function getCampaignList(filter) {
   let filterQuery = ""
   if (filter !== "") {
-    filterQuery = `WHERE lower(output) LIKE '%${filter}%'`
+    filterQuery = `WHERE lower(output) LIKE lower('%${filter}%')`
   }
   const query = `
   SELECT 

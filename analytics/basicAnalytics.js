@@ -2,6 +2,7 @@ const dbQueries = require("../db/queries");
 const auxFunctions = require("./basicSessionInfo");
 
 async function saveEvent(req, eventName, eventParam = null) {
+  
   const userIP = auxFunctions.getClientIP(req);
   const deviceType = auxFunctions.getDeviceType(req);
 

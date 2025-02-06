@@ -6,8 +6,8 @@ const controller = require("../controllers/controller");
 const contFeedback = require("../controllers/controllerFeedback");
 
 
-router.get("/", controller.homeGet);
-router.get("/home", controller.homeGet);
+router.get("/", controller.allCampaignsGet);
+router.get("/home", controller.allCampaignsGet);
 
 router.get("/form", controller.formGet);
 router.post("/generate-one-shot", controller.formGenerateOneShot);

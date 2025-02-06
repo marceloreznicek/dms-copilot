@@ -60,9 +60,10 @@
 }
 
 .chat-item a {
-  color: inherit;
+  color: white;
   text-decoration: none;
   display: block;
+  font-family: 'Arial', sans-serif;
 }
 
 .chat-item:hover {

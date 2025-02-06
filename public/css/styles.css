@@ -20,9 +20,34 @@ body {
 }
 
 .main-content {
+  padding-top: 0px;
   flex: 1;
   background-color: #1a1625; /* Main content area */
   display: flex;
   flex-direction: column;
   box-shadow: inset 2px 0 8px rgba(26, 22, 37, 0.5);
+}
+
+.action-buttons-container {
+  margin-top:40px;
+  margin-bottom: 20px;
+  place-content: center;
+  place-self: center;
+}
+
+.action-button {
+  padding: 12px 24px;
+  background-color: #6b47a3; /* Rich purple for button */
+  border: none;
+  border-radius: 5px;
+  color: #e2e2f5;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+
+  align-self: center;
 }

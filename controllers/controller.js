@@ -16,7 +16,7 @@ async function homeGet(req, res){
 }
 
 async function formGet(req, res) {
-  analytics.saveEvent(req, "viewForm")
+  analytics.saveEvent(req, "viewForm", {source: req.query.source})
 
   res.render("campaignForm", {
     pageTitle: "Dungeon Co-Pilot - New Campaign",
@@ -60,7 +60,7 @@ async function resultsGet(req, res) {
 }
 
 async function allCampaignsGet(req, res) {
-  analytics.saveEvent(req,"viewCampaignFolder")
+  analytics.saveEvent(req,"viewCampaignFolder", {source: req.query.source})
   const campaignList = await controllerCampaignList.getCampaignList();
 
   res.render("campaignFolder", {
@@ -72,8 +72,8 @@ async function allCampaignsGet(req, res) {
 }
 
 async function seachCampaignsGet(req, res) {
-  analytics.saveEvent(req,"viewCampaignFolder", {search_term: req.query.search_term})
-  console.log("Search Term: " + req.query.search_term)
+  analytics.saveEvent(req,"searchedCampaign", {search_term: req.query.search_term})
+  // console.log("Search Term: " + req.query.search_term)
   const campaignList = await controllerCampaignList.getCampaignList(req.query.search_term);
 
   res.render("campaignFolder", {
