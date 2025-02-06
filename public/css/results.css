@@ -111,3 +111,7 @@ strong {
     padding: 1rem;
   }
 }
+
+.campaign-title-container > * {
+  display: inline;
+}

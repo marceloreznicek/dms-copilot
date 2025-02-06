@@ -60,6 +60,7 @@ async function resultsGet(req, res) {
 }
 
 async function allCampaignsGet(req, res) {
+
   analytics.saveEvent(req,"viewCampaignFolder", {source: req.query.source})
   const campaignList = await controllerCampaignList.getCampaignList();
 

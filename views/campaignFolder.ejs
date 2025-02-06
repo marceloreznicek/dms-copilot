@@ -68,7 +68,9 @@
               class="campaign-card"
             >
               <div class="campaign-info">
-                <h3 class="campaign-title"><%= campaign.campaign_name %></h3>
+                <div class="campaign-title-container"><h3 class="campaign-title"><%= campaign.campaign_name %></h3>
+                  <% if(campaign.ishot){ %> <img src="/images/hot.png" alt="hot" width="20px"><% } %>
+                </div>
                 <p class="campaign-description">
                   <%= campaign.campaign_tagline %>
                 </p>

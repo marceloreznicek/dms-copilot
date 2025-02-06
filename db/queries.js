@@ -47,17 +47,28 @@ async function getCampaignList(filter) {
     filterQuery = `WHERE lower(output) LIKE lower('%${filter}%')`
   }
   const query = `
+  WITH tbHot AS (
+    SELECT
+      event_param->>'resultID' as campaign_id,
+      count(distinct user_ip) as user_count
+    FROM events
+      WHERE date > CURRENT_DATE - INTERVAL '3 days'
+    GROUP BY 1
+    ORDER BY 2 DESC
+    LIMIT 3
+  )
   SELECT 
-    campaign_id, 
+    campaign_outputs.campaign_id, 
     campaign_name, 
     campaign_tagline, 
     created_at, 
     FLOOR(RANDOM() * 11) as likes, 
-    false as isLiked 
+    false as isLiked,
+    CASE WHEN tbHot.campaign_id IS NOT NULL THEN true ELSE false END as ishot
   FROM campaign_outputs 
+    LEFT JOIN tbHot ON campaign_outputs.campaign_id = tbHot.campaign_id
     ${filterQuery}
-    ORDER BY created_at 
-    DESC LIMIT 20`
+    ORDER BY isHot DESC, created_at DESC LIMIT 20`
   const results = await pool.query(query)
   return results
 }
