@@ -25,6 +25,8 @@ async function handleWebhookResponseImage(req, res) {
   });
   
   res.end();
+
+  console.log("Image generation done - Image ready for display")
 }
 
 module.exports = { generateImage, handleWebhookResponseImage };

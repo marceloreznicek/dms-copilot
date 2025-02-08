@@ -24,7 +24,7 @@ async function requestImageGeneration(
         width: 1200,
         height: 600,
         image_num: 1,
-        steps: 20,
+        steps: 30,
         guidance_scale: 10,
         sampler_name: "Euler",
         negative_prompt: "",

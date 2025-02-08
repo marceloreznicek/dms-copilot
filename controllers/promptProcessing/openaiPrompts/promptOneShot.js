@@ -71,7 +71,7 @@ const adventureJSONFormat = {
     },
     image_description: {
       type: "string",
-      description: "3 sentences that will be used to create a striking image of the campaigns most intense moment in DALLE3 - Should be in the style of DnD",
+      description: "Provide a highly detailed description (3-4 sentences) of the most intense or memorable moment of the campaign. The description should cover the following key aspects:\n\n1. **Subject**: What is happening in the scene? Who or what is the focus? Be specific and vivid.\n2. **Style**: The image should be in the style of Dungeons and Dragons artwork (DnD), which often features fantasy, magical, and epic moments with intricate details and dynamic action.\n3. **Medium**: Describe the artistic medium you envision for this image (e.g., digital painting, watercolor, concept art).\n4. **Lighting and Color Palette**: Describe the mood and lighting (e.g., dramatic lighting, soft shadows, high contrast, warm or cold tones) and any dominant colors you want to be used.\n5. **Additional Details**: Include any other elements, such as environment (e.g., mystical forest, bustling city), characters, creatures, or objects that should be part of the scene.\n\nPlease ensure that the description is vivid, dynamic, and evokes a sense of epic scale and intensity appropriate for a campaign's climax."
     },
     summary: {
       type: "object",
