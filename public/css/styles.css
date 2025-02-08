@@ -23,9 +23,10 @@ body {
   padding-top: 0px;
   flex: 1;
   background-color: #1a1625; /* Main content area */
-  display: flex;
+    display: flex;
   flex-direction: column;
   box-shadow: inset 2px 0 8px rgba(26, 22, 37, 0.5);
+  align-items: center;
 }
 
 .action-buttons-container {

@@ -1,25 +1,28 @@
 <div class="header">
   <div class="left-section">
-      <div class="logo-container">
-          <a class="logo" href="/">My Dungeon Co-pilot</a>
-          <img src="/images/torch_white.png" alt="torch" width="50px">
+    <div class="logo-container">
+      <img src="/images/torch_white.png" alt="torch">
+      <div class="text-container">
+        <a class="logo" href="/">My Dungeon Co-pilot</a>
+        <div class="tagline">Bring your ideas to life</div>
       </div>
+    </div>
   </div>
   <div class="header-right">
-      <a href="/feedback" class="settings-btn">Send Feedback</a>
-      <div class="user-profile">
-          <img src="<%= userAvatar %>" alt="User Profile" class="profile-pic">
-          <span class="username"><%= username %></span>
-      </div>
+    <a href="/feedback" class="settings-btn">Send Feedback</a>
+    <div class="user-profile">
+      <img src="<%= userAvatar %>" alt="User Profile" class="profile-pic">
+      <span class="username"><%= username %></span>
+    </div>
   </div>
   <button class="hamburger-menu" onclick="toggleMenu()">
-      <span></span>
-      <span></span>
-      <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
   </button>
   <div class="mobile-dropdown">
-      <a href="/form" class="mobile-dropdown-item">New Campaign</a>
-      <a href="/campaigns" class="mobile-dropdown-item">My Campaigns</a>
-      <a href="/feedback" class="mobile-dropdown-item">Send Feedback</a>
+    <a href="/form" class="mobile-dropdown-item">New Campaign</a>
+    <a href="/campaigns" class="mobile-dropdown-item">My Campaigns</a>
+    <a href="/feedback" class="mobile-dropdown-item">Send Feedback</a>
   </div>
 </div>
