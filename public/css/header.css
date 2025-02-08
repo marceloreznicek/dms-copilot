@@ -23,7 +23,7 @@
 
 /* Logo image styling */
 .logo-container img {
-  height: 6%;
+  height: 70px;
   width: auto;
   order: -1; /* Places the image to the left */
 }
@@ -164,7 +164,7 @@
   }
 
   .logo-container img {
-    height: 50px;
+    height: 60px;
     width: auto;
   }
 }
