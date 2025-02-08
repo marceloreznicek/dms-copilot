@@ -8,6 +8,8 @@ const promptTest = require("./promptProcessing/promptTest.js");
 const controllerCampaignList = require("./aux/controllerCampaignList");
 const analytics = require("../analytics/basicAnalytics");
 const imgController = require("./imgGeneration/imgController.js")
+const formQuestions = require("./auxForm/formQuestions.js")
+
 const db = require("../db/queries");
 
 
@@ -25,6 +27,7 @@ async function formGet(req, res) {
     userAvatar: "/images/avatar-placeholder.png",
     username: "John Doe",
     campaignList: await controllerCampaignList.getCampaignList(),
+    questions: formQuestions.formQuestions
   });
 }
 

@@ -21,7 +21,7 @@ async function requestImageGeneration(
       request: {
         model_name: novitaModel,
         prompt: prompt,
-        width: 1200,
+        width: 1600,
         height: 600,
         image_num: 1,
         steps: 30,
