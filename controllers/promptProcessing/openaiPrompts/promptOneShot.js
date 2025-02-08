@@ -63,10 +63,15 @@ const adventureJSONFormat = {
       type: "string",
       description: "The title of the adventure (max 10 words) - Avoid cliches, be original - - Do not use cliches like 'Shadows of..', 'Whispers of..'",
     },
+    
     tagline: {
       type: "string",
       description:
         "A short whimsical summary of what this adventure is about (max 15 words) - Don't be generic, be specific.",
+    },
+    image_description: {
+      type: "string",
+      description: "3 sentences that will be used to create a striking image of the campaigns most intense moment in DALLE3 - Should be in the style of DnD",
     },
     summary: {
       type: "object",
@@ -183,6 +188,7 @@ const adventureJSONFormat = {
   required: [
     "adventure_name",
     "tagline",
+    "image_description",
     "summary",
     "unique_element",
     "mission",

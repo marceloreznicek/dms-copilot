@@ -7,6 +7,7 @@ const controllerPromptProcessing = require("./promptProcessing/promptProcessing"
 const promptTest = require("./promptProcessing/promptTest.js");
 const controllerCampaignList = require("./aux/controllerCampaignList");
 const analytics = require("../analytics/basicAnalytics");
+const imgController = require("./imgGeneration/imgController.js")
 const db = require("../db/queries");
 
 
@@ -41,6 +42,10 @@ async function formGenerateOneShot(req, res) {
     openAIResponse
   );
 
+  // console.log(JSON.parse(results.rows[0].output).image_description)
+  // console.log(JSON.parse(openAIResponse).image_description)
+  imgController.generateImage(JSON.parse(openAIResponse).image_description, campaignid)
+
   res.redirect("results/" + campaignid);
 }
 
@@ -49,6 +54,8 @@ async function resultsGet(req, res) {
   const results = await db.getResults(resultID);
   analytics.saveEvent(req, "viewResult", eventParam = {resultID: resultID})
 
+  // console.log(results.rows[0].image_url)
+
   res.render("result", {
     pageTitle: "Dungeon Co-Pilot - Results ",
     userAvatar: "/images/avatar-placeholder.png",
@@ -56,6 +63,7 @@ async function resultsGet(req, res) {
     pageTitle: "All Campaigns",
     campaignList: await controllerCampaignList.getCampaignList(),
     campaignData: parseJSONresults(results.rows[0].output),
+    campaignImage: results.rows[0].image_url,
   });
 }
 
@@ -85,6 +93,11 @@ async function seachCampaignsGet(req, res) {
   });
 }
 
+async function getGoogleAds(req, res) {
+  analytics.saveEvent(req,"attGoogleAds")
+  res.redirect("/")
+}
+
 async function controllerPromptTest(req, res) {
   await promptTest.testPrompt();
   res.end()
@@ -97,7 +110,8 @@ module.exports = {
   resultsGet,
   allCampaignsGet,
   controllerPromptTest,
-  seachCampaignsGet
+  seachCampaignsGet,
+  getGoogleAds
 };
 
 

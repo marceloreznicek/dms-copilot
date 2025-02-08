@@ -5,3 +5,20 @@ Meta
   - SignUp
   - Data Collection
 
+NOVITA KEY
+WEBHOOK URL
+
+CREATE TABLE image_requests (
+    id SERIAL PRIMARY KEY,
+    campaign_id VARCHAR(255),
+    task_id VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE image_responses (
+    id SERIAL PRIMARY KEY,
+    task_id VARCHAR(255),
+    image_url TEXT,
+    response JSONB,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

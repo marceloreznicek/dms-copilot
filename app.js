@@ -5,6 +5,7 @@ const app = express()
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.set('trust proxy', true);
+app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -18,3 +19,4 @@ const router = require("./routes/routes")
 app.use("/", router)
 
 app.listen(3000, () => "We are live!")
+

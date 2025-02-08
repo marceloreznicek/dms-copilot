@@ -35,7 +35,17 @@ async function insertOutputData(payload) {
 
 async function getResults(id) {
   const query = `
-  SELECT * FROM campaign_outputs WHERE campaign_id = ($1)`
+  SELECT 
+    campaign_outputs.* ,
+    image_requests.task_id as image_task_id,
+    image_responses.image_url as image_url
+  FROM campaign_outputs 
+    LEFT JOIN image_requests 
+      ON campaign_outputs.campaign_id = image_requests.campaign_id
+    LEFT JOIN image_responses
+      ON image_requests.task_id = image_responses.task_id
+  WHERE campaign_outputs.campaign_id = ($1)
+  LIMIT 1`
   const values = [id];
   const results = await pool.query(query, values)
   return results
@@ -68,7 +78,7 @@ async function getCampaignList(filter) {
   FROM campaign_outputs 
     LEFT JOIN tbHot ON campaign_outputs.campaign_id = tbHot.campaign_id
     ${filterQuery}
-    ORDER BY isHot DESC, created_at DESC LIMIT 20`
+    ORDER BY isHot DESC, created_at DESC LIMIT 30`
   const results = await pool.query(query)
   return results
 }
