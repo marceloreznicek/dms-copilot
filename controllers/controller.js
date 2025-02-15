@@ -76,10 +76,13 @@ async function allCampaignsGet(req, res) {
   const campaignList = await controllerCampaignList.getCampaignList();
 
   res.render("campaignFolder", {
-    pageTitle: "All Campaigns",
     userAvatar: "/images/avatar-placeholder.png",
     username: "User",
     campaignList: campaignList,
+    pageTitle: 'Campaign List - My Dungeon CoPilot',
+    pageDescription: 'Browse and create marketing campaigns with our intuitive platform',
+    pageKeywords: 'campaigns, marketing, digital marketing, campaign creation',
+    ogImage: 'https://yoursite.com/images/og-image.jpg',
   });
 }
 
