@@ -66,6 +66,17 @@ async function getCampaignList(filter) {
     GROUP BY 1
     ORDER BY 2 DESC
     LIMIT 3
+  ),
+
+  tbImages AS (
+
+    SELECT 
+      campaign_id,
+      max(image_url) as image_url
+    FROM image_requests 
+    LEFT JOIN image_responses
+      ON image_requests.task_id = image_responses.task_id
+    GROUP BY 1
   )
   SELECT 
     campaign_outputs.campaign_id, 
@@ -74,9 +85,12 @@ async function getCampaignList(filter) {
     created_at, 
     FLOOR(RANDOM() * 11) as likes, 
     false as isLiked,
-    CASE WHEN tbHot.campaign_id IS NOT NULL THEN true ELSE false END as ishot
+    CASE WHEN tbHot.campaign_id IS NOT NULL THEN true ELSE false END as ishot,
+    image_url
   FROM campaign_outputs 
     LEFT JOIN tbHot ON campaign_outputs.campaign_id = tbHot.campaign_id
+    LEFT JOIN tbImages ON campaign_outputs.campaign_id = tbImages.campaign_id
+
     ${filterQuery}
     ORDER BY isHot DESC, created_at DESC LIMIT 30`
   const results = await pool.query(query)

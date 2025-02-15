@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= pageTitle %></title>
 
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/results.css" />
-    <link rel="stylesheet" href="/css/header.css" />
-    <link rel="stylesheet" href="/css/sidebar.css" />
-    <link rel="stylesheet" href="/css/campaignFolder.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= pageTitle %>
+  </title>
 
-    <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/results.css" />
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/sidebar.css" />
+  <link rel="stylesheet" href="/css/campaignFolder.css" />
 
-    <script defer src="/js/header.js"></script>
-    <script defer src="/js/resultsSearch.js"></script>
+  <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
 
-    <!-- Google tag (gtag.js) -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=AW-16853664559"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+  <script defer src="/js/header.js"></script>
+  <script defer src="/js/resultsSearch.js"></script>
 
-      gtag("config", "AW-16853664559");
-    </script>
-  </head>
-  <body>
-    <%- include('partials/header', { userAvatar: userAvatar, username: username
-    }) %>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16853664559"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "AW-16853664559");
+  </script>
+</head>
+
+<body>
+  <%- include('partials/header', { userAvatar: userAvatar, username: username }) %>
 
     <div class="main-layout">
       <%- include('partials/sidebar', { campaignList: campaignList }) %>
 
-      <div class="main-content">
+        <div class="main-content">
 
-        <div class="action-buttons-container">
-          <a class="action-button" href="/form?source=center_button">Build your own campaign</a>
-        </div>
+          <div class="action-buttons-container">
+            <a class="action-button" href="/form?source=center_button">Build your own campaign</a>
+          </div>
 
 
-        <div class="results-container">
+          <div class="results-container">
 
-          <div class="campaigns-grid">
-            <h1 class="all-campaigns-title"><%= pageTitle %></h1>
+            <div class="campaigns-grid">
+              <h1 class="all-campaigns-title">
+                <%= pageTitle %>
+              </h1>
 
-            <div class="search-section">
-              <div class="search-container">
-                <input
-                  type="text"
-                  id="campaignSearch"
-                  class="search-input"
-                  placeholder="Search campaigns..."
-                />
-                <button class="search-button">Search</button>
-              </div>
-            </div>
-
-            <% campaignList.forEach(campaign => { %>
-            <a
-              href="/results/<%= campaign.campaign_id %>"
-              class="campaign-card"
-            >
-              <div class="campaign-info">
-                <div class="campaign-title-container"><h3 class="campaign-title"><%= campaign.campaign_name %></h3>
-                  <% if(campaign.ishot){ %> <img src="/images/hot.png" alt="hot" width="20px"><% } %>
-                </div>
-                <p class="campaign-description">
-                  <%= campaign.campaign_tagline %>
-                </p>
-                <div class="campaign-meta">
-                  <span
-                    ><%= new
-                    Date(campaign.created_at).toLocaleDateString("en-US", {
-                    weekday: 'short', year: 'numeric', month: 'short', day:
-                    '2-digit' }) %></span
-                  >
+              <div class="search-section">
+                <div class="search-container">
+                  <input type="text" id="campaignSearch" class="search-input" placeholder="Search campaigns..." />
+                  <button class="search-button">Search</button>
                 </div>
               </div>
-              <!-- <div class="like-section">
+
+              <% campaignList.forEach(campaign=> { %>
+
+                <a href="/results/<%= campaign.campaign_id %>" class="campaign-card"
+                  style="display: flex; flex-direction: column; align-items: flex-start;">
+                  <img class="campaign-card-image" src=<%=campaign.image_url %> alt="">
+
+                  <div class="campaign-info">
+                    <div class="campaign-title-container">
+                      <h3 class="campaign-title">
+                        <%= campaign.campaign_name %>
+                      </h3>
+                      <% if(campaign.ishot){ %> <img src="/images/hot.png" alt="hot" width="20px">
+                        <% } %>
+                    </div>
+                    <p class="campaign-description">
+                      <%= campaign.campaign_tagline %>
+                    </p>
+                    <div class="campaign-meta">
+                      <span>
+                        <%= new Date(campaign.created_at).toLocaleDateString("en-US", { weekday: 'short' ,
+                          year: 'numeric' , month: 'short' , day: '2-digit' }) %>
+                      </span>
+                    </div>
+                  </div>
+                  <!-- <div class="like-section">
                 <button
                   class="like-button <%= campaign.isLiked ? 'liked' : '' %>"
                   onclick="toggleLike(event, '<%= campaign.id %>')"
@@ -92,11 +92,11 @@
                 </button>
                 <span class="like-count"><%= campaign.likes %></span>
               </div> -->
-            </a>
-            <% }); %>
+                </a>
+                <% }); %>
+            </div>
           </div>
         </div>
-      </div>
     </div>
 
     <script>
@@ -124,5 +124,6 @@
         }
       }
     </script>
-  </body>
+</body>
+
 </html>

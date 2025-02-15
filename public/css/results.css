@@ -167,5 +167,6 @@ strong {
     min-width: 200%; /* Makes image wider than container to enable scrolling */
     height: 100%;
     margin: 0;
+    object-position: left; /* Force image to start from left */
   }
 }

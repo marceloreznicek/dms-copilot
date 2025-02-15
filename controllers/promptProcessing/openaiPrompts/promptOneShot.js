@@ -33,6 +33,7 @@ WORLD CREATION GUIDELINES:
 RESTRICTIONS:
 - No generic fantasy tropes (ancient prophecies, chosen ones, evil dragons)
 - No generic items or artifacts
+- No use of the words: Clockwork, Artifact
 - No overly complex political situations
 - No world-ending threats (keep it focused and local)
 - No "fetch quest" style missions
