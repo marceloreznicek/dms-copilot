@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "ngrok": "^5.0.0-beta.2",
+    "prettier": "^3.5.1",
     "prettier-plugin-ejs": "^1.0.3"
   }
 }

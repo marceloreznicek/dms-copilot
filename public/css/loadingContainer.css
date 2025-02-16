@@ -44,3 +44,19 @@
   100% { transform: rotate(360deg); }
 }
 
+.loading-progress-container {
+  width: 80%;
+  max-width: 600px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 2px;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.loading-progress-bar {
+  width: 0%;
+  height: 100%;
+  background-color: #a18fff;
+  transition: width 0.5s ease-out;
+}

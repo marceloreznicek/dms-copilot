@@ -33,7 +33,7 @@ WORLD CREATION GUIDELINES:
 RESTRICTIONS:
 - No generic fantasy tropes (ancient prophecies, chosen ones, evil dragons)
 - No generic items or artifacts
-- No use of the words: Clockwork, Artifact
+- No use of the words: "Clockwork", "Artifact"
 - No overly complex political situations
 - No world-ending threats (keep it focused and local)
 - No "fetch quest" style missions
@@ -68,7 +68,7 @@ const adventureJSONFormat = {
     tagline: {
       type: "string",
       description:
-        "A short whimsical summary of what this adventure is about (max 15 words) - Don't be generic, be specific.",
+        "A short whimsical summary of what this adventure is about (around 30 words) - Don't be generic, be specific.",
     },
     image_description: {
       type: "string",

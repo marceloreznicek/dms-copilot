@@ -1,14 +1,8 @@
-
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.querySelector('form');
-  
-  form.addEventListener('submit', (event) => {
-    // Check form validity
-
-  });
+// Optional: Clean up function if the page is unloaded
+window.addEventListener('unload', function () {
+  const loadingContainer = document.getElementById('loadingContainer');
+  if (loadingContainer && loadingContainer.dataset.progressInterval) {
+    clearInterval(parseInt(loadingContainer.dataset.progressInterval));
+  }
 });
 
-function enableLoadingScreen() {
-  const loadingContainer = document.getElementById("loadingContainer");
-  loadingContainer.classList.add("loading-active");
-}

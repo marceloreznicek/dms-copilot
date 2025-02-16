@@ -79,10 +79,11 @@ async function allCampaignsGet(req, res) {
     userAvatar: "/images/avatar-placeholder.png",
     username: "User",
     campaignList: campaignList,
-    pageTitle: 'Campaign List - My Dungeon CoPilot',
+    pageTitle: 'Campaign List',
     pageDescription: 'Browse and create marketing campaigns with our intuitive platform',
     pageKeywords: 'campaigns, marketing, digital marketing, campaign creation',
     ogImage: 'https://yoursite.com/images/og-image.jpg',
+    currentUrl: 'www.mydungeoncopilot.com'
   });
 }
 

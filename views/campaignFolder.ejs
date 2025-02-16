@@ -1,129 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>
-    <%= pageTitle %>
-  </title>
+    <!-- Primary Meta Tags -->
+    <title><%= pageTitle %></title>
+    <meta name="description" content="<%= pageDescription %>" />
+    <meta name="keywords" content="<%= pageKeywords %>" />
+    <meta name="author" content="Your Site Name" />
 
-  <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/results.css" />
-  <link rel="stylesheet" href="/css/header.css" />
-  <link rel="stylesheet" href="/css/sidebar.css" />
-  <link rel="stylesheet" href="/css/campaignFolder.css" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= currentUrl %>" />
+    <meta property="og:title" content="<%= pageTitle %>" />
+    <meta property="og:description" content="<%= pageDescription %>" />
+    <meta property="og:image" content="<%= ogImage %>" />
 
-  <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="<%= currentUrl %>" />
+    <meta name="twitter:title" content="<%= pageTitle %>" />
+    <meta name="twitter:description" content="<%= pageDescription %>" />
+    <meta name="twitter:image" content="<%= ogImage %>" />
 
-  <script defer src="/js/header.js"></script>
-  <script defer src="/js/resultsSearch.js"></script>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/results.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/sidebar.css" />
+    <link rel="stylesheet" href="/css/campaignFolder.css" />
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16853664559"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
+    <link rel="icon" type="image/x-icon" href="/images/torch.ico" />
 
-    gtag("config", "AW-16853664559");
-  </script>
-</head>
+    <!-- Scripts -->
+    <script defer src="/js/header.js"></script>
+    <script defer src="/js/resultsSearch.js"></script>
 
-<body>
-  <%- include('partials/header', { userAvatar: userAvatar, username: username }) %>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16853664559"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'AW-16853664559');
+    </script>
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": [
+              <% campaignList.forEach((campaign, index) => { %>
+                  {
+                      "@type": "ListItem",
+                      "position": <%= index + 1 %>,
+                      "item": {
+                          "@type": "CreativeWork",
+                          "name": "<%= campaign.campaign_name %>",
+                          "description": "<%= campaign.campaign_tagline %>",
+                          "image": "<%= campaign.image_url %>",
+                          "dateCreated": "<%= campaign.created_at %>",
+                          "url": "/results/<%= campaign.campaign_id %>"
+                      }
+                  }<%= index < campaignList.length - 1 ? ',' : '' %>
+              <% }); %>
+          ]
+      }
+    </script>
+  </head>
+
+  <body>
+    <%- include('partials/header', { userAvatar: userAvatar, username: username }) %>
 
     <div class="main-layout">
       <%- include('partials/sidebar', { campaignList: campaignList }) %>
 
-        <div class="main-content">
+      <main class="main-content">
+        <section class="action-buttons-container">
+          <a class="action-button" href="/form?source=center_button" title="Create New Campaign"
+            >Build your own campaign</a
+          >
+        </section>
 
-          <div class="action-buttons-container">
-            <a class="action-button" href="/form?source=center_button">Build your own campaign</a>
-          </div>
+        <section class="results-container">
+          <article class="campaigns-grid">
+            <h1 class="all-campaigns-title"><%= pageTitle %></h1>
 
+            <div class="search-section">
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="campaignSearch"
+                  class="search-input"
+                  placeholder="Search campaigns..."
+                  aria-label="Search campaigns"
+                />
+                <button class="search-button" aria-label="Submit search">Search</button>
+              </div>
+            </div>
 
-          <div class="results-container">
+            <% campaignList.forEach(campaign => { %>
+            <a
+              href="/results/<%= campaign.campaign_id %>"
+              class="campaign-card"
+              title="View <%= campaign.campaign_name %>"
+            >
+            <% if(campaign.image_url !== null) { %>
+              <img
+                class="campaign-card-image"
+                src="<%= campaign.image_url %>"
+                alt="<%= campaign.campaign_name %> - <%= campaign.campaign_tagline %>"
+                loading="lazy"
+              />
+              <% } %>
 
-            <div class="campaigns-grid">
-              <h1 class="all-campaigns-title">
-                <%= pageTitle %>
-              </h1>
-
-              <div class="search-section">
-                <div class="search-container">
-                  <input type="text" id="campaignSearch" class="search-input" placeholder="Search campaigns..." />
-                  <button class="search-button">Search</button>
+              <div class="campaign-info">
+                <div class="campaign-title-container">
+                  <h2 class="campaign-title"><%= campaign.campaign_name %></h2>
+                  <% if(campaign.ishot){ %>
+                  <img
+                    src="/images/hot.png"
+                    alt="Trending campaign"
+                    width="20"
+                    height="20"
+                    loading="lazy"
+                  />
+                  <% } %>
+                </div>
+                <p class="campaign-description"><%= campaign.campaign_tagline %></p>
+                <div class="campaign-meta">
+                  <time datetime="<%= campaign.created_at %>">
+                    <%= new Date(campaign.created_at).toLocaleDateString("en-US", { weekday:
+                    'short', year: 'numeric', month: 'short', day: '2-digit' }) %>
+                  </time>
                 </div>
               </div>
-
-              <% campaignList.forEach(campaign=> { %>
-
-                <a href="/results/<%= campaign.campaign_id %>" class="campaign-card"
-                  style="display: flex; flex-direction: column; align-items: flex-start;">
-                  <img class="campaign-card-image" src=<%=campaign.image_url %> alt="">
-
-                  <div class="campaign-info">
-                    <div class="campaign-title-container">
-                      <h3 class="campaign-title">
-                        <%= campaign.campaign_name %>
-                      </h3>
-                      <% if(campaign.ishot){ %> <img src="/images/hot.png" alt="hot" width="20px">
-                        <% } %>
-                    </div>
-                    <p class="campaign-description">
-                      <%= campaign.campaign_tagline %>
-                    </p>
-                    <div class="campaign-meta">
-                      <span>
-                        <%= new Date(campaign.created_at).toLocaleDateString("en-US", { weekday: 'short' ,
-                          year: 'numeric' , month: 'short' , day: '2-digit' }) %>
-                      </span>
-                    </div>
-                  </div>
-                  <!-- <div class="like-section">
-                <button
-                  class="like-button <%= campaign.isLiked ? 'liked' : '' %>"
-                  onclick="toggleLike(event, '<%= campaign.id %>')"
-                >
-                  ♥
-                </button>
-                <span class="like-count"><%= campaign.likes %></span>
-              </div> -->
-                </a>
-                <% }); %>
-            </div>
-          </div>
-        </div>
+            </a>
+            <% }); %>
+          </article>
+        </section>
+      </main>
     </div>
 
     <script>
       async function toggleLike(event, campaignId) {
-        event.preventDefault(); // Prevent navigation
-
+        event.preventDefault();
         try {
           const response = await fetch(`/api/campaigns/${campaignId}/like`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
           });
 
           if (response.ok) {
             const data = await response.json();
             const button = event.target;
             const likeCount = button.nextElementSibling;
-
-            button.classList.toggle("liked");
+            button.classList.toggle('liked');
             likeCount.textContent = data.likes;
           }
         } catch (error) {
-          console.error("Error toggling like:", error);
+          console.error('Error toggling like:', error);
         }
       }
     </script>
-</body>
-
+  </body>
 </html>

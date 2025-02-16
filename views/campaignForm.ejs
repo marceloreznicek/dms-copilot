@@ -23,20 +23,22 @@
       function gtag() {
         dataLayer.push(arguments);
       }
-      gtag("js", new Date());
-      gtag("config", "AW-16853664559");
+      gtag('js', new Date());
+      gtag('config', 'AW-16853664559');
     </script>
   </head>
   <body>
     <%- include('partials/header', { userAvatar: userAvatar, username: username }) %>
 
     <div class="main-layout">
-      <%- include('partials/loadingContainer') %>
-      <%- include('partials/sidebar', { campaignList: campaignList }) %>
+      <%- include('partials/loadingContainer') %> <%- include('partials/sidebar', { campaignList:
+      campaignList }) %>
 
       <div class="main-content">
         <div class="action-buttons-container">
-          <a class="action-button" href="/campaigns?source=center_button_form">Browse ready campaigns</a>
+          <a class="action-button" href="/campaigns?source=center_button_form"
+            >BROWSE 200+ FREE CAMPAIGNS</a
+          >
         </div>
 
         <div class="form-container">
@@ -60,26 +62,22 @@
               <div class="section-container">
                 <h2 class="section-title">World Building</h2>
                 <% questions.filter(q => q.type === 'worldbuilding').forEach(question => { %>
-                  <div class="question-container">
-                    <h3 class="question-title"><%= question.question %></h3>
-                    <div class="options-grid">
-                      <% if (question.multiSelect) { %>
-                        <% question.options.forEach(option => { %>
-                          <label class="option-label">
-                            <input type="checkbox" name="<%= question.id %>[]" value="<%= option %>">
-                            <span class="option-text"><%= option %></span>
-                          </label>
-                        <% }); %>
-                      <% } else { %>
-                        <% question.options.forEach(option => { %>
-                          <label class="option-label">
-                            <input type="radio" name="<%= question.id %>" value="<%= option %>">
-                            <span class="option-text"><%= option %></span>
-                          </label>
-                        <% }); %>
-                      <% } %>
-                    </div>
+                <div class="question-container">
+                  <h3 class="question-title"><%= question.question %></h3>
+                  <div class="options-grid">
+                    <% if (question.multiSelect) { %> <% question.options.forEach(option => { %>
+                    <label class="option-label">
+                      <input type="checkbox" name="<%= question.id %>[]" value="<%= option %>" />
+                      <span class="option-text"><%= option %></span>
+                    </label>
+                    <% }); %> <% } else { %> <% question.options.forEach(option => { %>
+                    <label class="option-label">
+                      <input type="radio" name="<%= question.id %>" value="<%= option %>" />
+                      <span class="option-text"><%= option %></span>
+                    </label>
+                    <% }); %> <% } %>
                   </div>
+                </div>
                 <% }); %>
               </div>
             </div>
@@ -89,33 +87,29 @@
               <div class="section-container">
                 <h2 class="section-title">Plot Elements</h2>
                 <% questions.filter(q => q.type === 'plot').forEach(question => { %>
-                  <div class="question-container">
-                    <h3 class="question-title"><%= question.question %></h3>
-                    <div class="options-grid">
-                      <% if (question.multiSelect) { %>
-                        <% question.options.forEach(option => { %>
-                          <label class="option-label">
-                            <input type="checkbox" name="<%= question.id %>[]" value="<%= option %>">
-                            <span class="option-text"><%= option %></span>
-                          </label>
-                        <% }); %>
-                      <% } else { %>
-                        <% question.options.forEach(option => { %>
-                          <label class="option-label">
-                            <input type="radio" name="<%= question.id %>" value="<%= option %>">
-                            <span class="option-text"><%= option %></span>
-                          </label>
-                        <% }); %>
-                      <% } %>
-                    </div>
+                <div class="question-container">
+                  <h3 class="question-title"><%= question.question %></h3>
+                  <div class="options-grid">
+                    <% if (question.multiSelect) { %> <% question.options.forEach(option => { %>
+                    <label class="option-label">
+                      <input type="checkbox" name="<%= question.id %>[]" value="<%= option %>" />
+                      <span class="option-text"><%= option %></span>
+                    </label>
+                    <% }); %> <% } else { %> <% question.options.forEach(option => { %>
+                    <label class="option-label">
+                      <input type="radio" name="<%= question.id %>" value="<%= option %>" />
+                      <span class="option-text"><%= option %></span>
+                    </label>
+                    <% }); %> <% } %>
                   </div>
+                </div>
                 <% }); %>
 
                 <div class="question-container">
                   <h3 class="question-title">Additional Plot Comments</h3>
-                  <textarea 
-                    name="plotComments" 
-                    class="comment-textarea" 
+                  <textarea
+                    name="plotComments"
+                    class="comment-textarea"
                     placeholder="Add any specific plot elements, twists, or story elements you'd like to include..."
                     rows="4"
                   ></textarea>
@@ -143,7 +137,7 @@
     </div>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
+      document.addEventListener('DOMContentLoaded', function () {
         const form = document.querySelector('.generator-form');
         const sections = document.querySelectorAll('.form-section');
         const steps = document.querySelectorAll('.step');
@@ -154,7 +148,7 @@
 
         function updateStep(step) {
           // Update sections visibility
-          sections.forEach(section => {
+          sections.forEach((section) => {
             section.classList.remove('active');
             if (section.dataset.section == step) {
               section.classList.add('active');
@@ -223,22 +217,17 @@
             currentStep++;
             updateStep(currentStep);
             const formContainer = document.querySelector('.form-container');
-            formContainer.scrollIntoView({ 
-              behavior: 'smooth',
-              block: 'start'
-            });
-      
+            formContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
           } else {
-
             if (!form.checkValidity()) {
               form.reportValidity();
               return;
             }
-            
-            // If form is valid, show loading screen and let the form submit naturally
-            const loadingContainer = document.getElementById("loadingContainer");
-            loadingContainer.classList.add("loading-active");
 
+            // If form is valid, show loading screen and let the form submit naturally
+            const loadingContainer = document.getElementById('loadingContainer');
+            loadingContainer.classList.add('loading-active');
+            handleFormSubmission();
             form.submit();
           }
         });
@@ -246,6 +235,21 @@
         // Initialize first step
         updateStep(1);
       });
+
+      // Function to handle form submission and progress bar
+      function handleFormSubmission() {
+        const progressBar = document.querySelector('.loading-progress-bar');
+
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+          progress += 5;
+          progressBar.style.width = `${progress}%`;
+
+          if (progress >= 100) {
+            clearInterval(progressInterval);
+          }
+        }, 1000);
+      }
     </script>
   </body>
 </html>
